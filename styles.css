@@ -56,6 +56,11 @@
 	/* background-color: #c625d0; */
 }
 
+#div-formulario {
+	height: 50px;
+	/* border: 1px solid #27d86c; */
+}
+
 #cohort-msg {
 	font-size: 1.75em;
 }
