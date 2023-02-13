@@ -55,3 +55,7 @@
 	border: 1px solid red;
 	/* background-color: #c625d0; */
 }
+
+#cohort-msg {
+	font-size: 1.75em;
+}
