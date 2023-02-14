@@ -26,8 +26,8 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<!-- TODO EL CONTAINER DE LA NAVBAR -->
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">
-					<img src="assets/img/Logo_Amazing_Events.png" alt="Amazing Events Logo" width="75" height="24">
+				<a class="navbar-brand ms-lg-5" href="#">
+					<img src="assets/img/Logo_Amazing_Events.png" alt="Amazing Events Logo" width="120" height="36">
 				</a>
 				<!-- TOGGLE PARA PAGINA REDUCIDA -->
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -36,51 +36,27 @@
 				</button>
 
 				<!-- DIV PARA LOS BOTONES -->
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-						<!-- <button>Hover Over</button> -->
-						<li class="nav-item">
-							<a class="nav-link btn btn-1" aria-current="page" href="#">Home</a>
-							<!-- <button class="btn btn-1">Hover Me!</button> -->
-						</li>
-						<li class="nav-item">
-							<a class="nav-link btn btn-1" aria-current="page" href="#">Upcoming Events</a>
-							<!-- <button class="btn btn-1">Hover Me!</button> -->
-						</li>
-						<li class="nav-item">
-							<a class="nav-link btn btn-1" aria-current="page" href="#">Past Events</a>
-							<!-- <button class="btn btn-1">Hover Me!</button> -->
-						</li>
-						<li class="nav-item">
-							<a class="nav-link btn btn-1" aria-current="page" href="#">Contact</a>
-							<!-- <button class="btn btn-1">Hover Me!</button> -->
-						</li>
-						<li class="nav-item">
-							<a class="nav-link btn btn-1" aria-current="page" href="#">Stats</a>
-							<!-- <button class="btn btn-1">Hover Me!</button> -->
-						</li>
-						<!-- <li class="nav-item">
-							<a class="nav-link" href="#">Link</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Dropdown
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">Action</a></li>
-								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">Something else here</a></li>
-							</ul>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-						</li> -->
-					</ul>
-					<!-- <form class="d-flex">
-						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">Search</button>
-					</form> -->
+				<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+					<div class="container w-50"></div>
+					<div class="container w-50">
+						<ul class="navbar-nav justify-content-around ms-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link btn btn-outline-primary px-3 py-1" aria-current="page" role="button" href="#">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link btn btn-outline-primary px-3 py-1" aria-current="page" href="#">Upcoming Events</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link btn btn-outline-primary px-3 py-1" aria-current="page" href="#">Past Events</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link btn btn-outline-primary px-3 py-1" aria-current="page" href="#">Contact</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link btn btn-outline-primary px-3 py-1" aria-current="page" href="#">Stats</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</nav>
@@ -90,12 +66,12 @@
 
 		<!-- UN SIMPLE BANNER PARA INDICAR, REDUNDANTEMENTE, EN QUE PAGINA ESTOY PARADO -->
 		<div id="giant-banner" class="container-fluid d-flex justify-content-between align-items-center">
-			<div style="background-color: red; font-size: 2.5em; color: black;">
-				<a href="" class="btn btn-outline-success">&lt;</a>
+			<div class="d-flex">
+				<a href="" class="carrousel-button">&lt;</a>
 			</div>
 			<h2> HOME</h2>
-			<div style="background-color: red; font-size: 2.5em; color: black;">
-				<a href="" class="btn btn-outline-success">></a>
+			<div class="d-flex">
+				<a href="" class="carrousel-button">></a>
 			</div>
 		</div>
 
@@ -144,72 +120,79 @@
 
 		<!-- SECCION PARA LAS CARTAS -->
 		<div class="container-fluid" id="cartas">
-			<div class="row d-flex justify-content-sm-around mt-5 g-3">
-				<div class="card" style="background-image: url(assets/img/Food_Fair.jpg);">
-				<!-- <div class="card"> -->
-					<div class="card-img">
-						<!-- <img src="assets/img/Food_Fair.jpg" alt=""> -->
+			<div class="row d-flex justify-content-sm-evenly mt-1 mx-auto g-5 pb-5">
+
+				<div class="card d-flex flex-column">
+					<div class="card-image" style="background-image: url(./assets/img/Cinema.jpg);">
+						<!-- <img src="./assets/img/Cinema.jpg" class="card-img-top" alt="..."> -->
 					</div>
-						<div class="card-info">
-							<!-- <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="currentColor"></path></svg> -->
-							<p class="text-title">Food Fair</p>
-							<p class="text-body">Lorem Ipsum dolor sit amet</p>
-							<button class="card-button">Read More</button>
-						</div>
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
 					</div>
-				<div class="card" style="background-image: url(assets/img/Cinema.jpg);">
-					<div class="card-img">
-						<!-- <img src="assets/img/Cinema.jpg" alt=""> -->
+				</div>
+
+				<div class="card d-flex flex-column">
+					<div class="card-image" style="background-image: url(./assets/img/Costume_Party.jpg);">
+						<!-- <img src="./assets/img/Cinema.jpg" class="card-img-top" alt="..."> -->
 					</div>
-						<div class="card-info">
-							<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="currentColor"></path></svg>
-							<p class="text-title">Card title</p>
-							<p class="text-body">Lorem Ipsum dolor sit amet</p>
-							<button class="card-button">Read More</button>
-						</div>
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
 					</div>
-				<div class="card">
-					<div class="card-img"></div>
-						<div class="card-info">
-							<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="currentColor"></path></svg>
-							<p class="text-title">Card title</p>
-							<p class="text-body">Lorem Ipsum dolor sit amet</p>
-							<button class="card-button">Read More</button>
-						</div>
+				</div>
+
+				<div class="card d-flex flex-column">
+					<div class="card-image" style="background-image: url(./assets/img/Music_Concert.jpg);">
+						<!-- <img src="./assets/img/Cinema.jpg" class="card-img-top" alt="..."> -->
 					</div>
-				<div class="card">
-					<div class="card-img"></div>
-						<div class="card-info">
-							<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="currentColor"></path></svg>
-							<p class="text-title">Card title</p>
-							<p class="text-body">Lorem Ipsum dolor sit amet</p>
-							<button class="card-button">Read More</button>
-						</div>
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
 					</div>
+				</div>
+				<div class="card d-flex flex-column">
+					<div class="card-image" style="background-image: url(./assets/img/Marathon.jpg);">
+						<!-- <img src="./assets/img/Cinema.jpg" class="card-img-top" alt="..."> -->
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+
 
 			</div>
-
 		</div>
+	
+
+
 
 	</main>
 
-	<footer class="footer fixed-bottom mt-auto py-3 bg-light">
+
+
+	<footer class="footer mt-auto py-3 bg-light">
 		<div class="container d-flex justify-content-between align-items-center">
 
 				<ul id="ul_iconos" class="d-flex list-unstyled mb-0">
 				<!-- <ul id="ul_iconos"> -->
 					<li>
-							<a class="btn btn-outline-light btn-floating rounded-circle mx-3" href="#" role="button">
+							<a class="btn btn-outline-primary btn-floating rounded-circle mx-3" href="#" role="button">
 							<i class="fab fa-instagram"></i>
 							</a>
 					</li>
 					<li>
-							<a class="btn btn-outline-light btn-floating rounded-circle mx-3" href="#" role="button">
+							<a class="btn btn-outline-primary btn-floating rounded-circle mx-3" href="#" role="button">
 							<i class="fab fa-facebook-square"></i>
 							</a>
 					</li>
 					<li>
-							<a class="btn btn-outline-light btn-floating rounded-circle mx-3" href="#" role="button">
+							<a class="btn btn-outline-primary btn-floating rounded-circle mx-3" href="#" role="button">
 							<i class="fab fa-whatsapp"></i>
 							</a>
 					</li>
