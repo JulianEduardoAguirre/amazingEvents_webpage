@@ -91,7 +91,7 @@
 		<!-- UN SIMPLE BANNER PARA INDICAR, REDUNDANTEMENTE, EN QUE PAGINA ESTOY PARADO -->
 		<div id="giant-banner" class="container-fluid d-flex justify-content-between align-items-center">
 			<div style="background-color: red; font-size: 2.5em; color: black;">
-				<a href="" class="btn btn-outline-success">&lt</a>
+				<a href="" class="btn btn-outline-success">&lt;</a>
 			</div>
 			<h2> Contact Us</h2>
 			<div style="background-color: red; font-size: 2.5em; color: black;">
@@ -101,11 +101,35 @@
 
 		<!-- SECCION PARA EL FORMULARIO DE CONTACTO -->
 		<div class="container-fluid" id="contact-form">
-			<form action="">
-				<label for="name"> Name: <input type="text" name="name" id="name"></label>
-				<label for="email"> Email: <input type="text" name="email" id="email"></label>
-				<label for="message"> Message: <input type="textarea" name="message" id="message"></label>
-				<input type="submit" placeholder="submit" value="submit">
+			<form>
+				<!-- Name input -->
+				<div class="form-outline mb-4">
+					<input type="text" id="form4Example1" class="form-control">
+					<label class="form-label" for="form4Example1">Name</label>
+				</div>
+			
+				<!-- Email input -->
+				<div class="form-outline mb-4">
+					<input type="email" id="form4Example2" class="form-control">
+					<label class="form-label" for="form4Example2">Email address</label>
+				</div>
+			
+				<!-- Message input -->
+				<div class="form-outline mb-4">
+					<textarea class="form-control" id="form4Example3" rows="4"></textarea>
+					<label class="form-label" for="form4Example3">Message</label>
+				</div>
+			
+				<!-- Checkbox -->
+				<div class="form-check d-flex justify-content-center mb-4">
+					<input class="form-check-input me-2" type="checkbox" value="" id="form4Example4" checked>
+					<label class="form-check-label" for="form4Example4">
+						Send me a copy of this message
+					</label>
+				</div>
+			
+				<!-- Submit button -->
+				<button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
 			</form>
 
 		</div>
