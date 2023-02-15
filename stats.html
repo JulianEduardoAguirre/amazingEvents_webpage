@@ -6,6 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+
+
 	<!-- Bootstrap 5 -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -17,16 +19,17 @@
 	<link rel="stylesheet" href="styles.css">
 
 
-	<title>Amazing Events - Home</title>
+	<title>Amazing Events - Stats</title>
 </head>
-<!-- HOME -->
+
+<!-- STATS -->
 
 <body class="d-flex flex-column">
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<!-- TODO EL CONTAINER DE LA NAVBAR -->
 			<div class="container-fluid">
-				<a class="navbar-brand ms-lg-5" href="#">
+				<a class="navbar-brand ms-lg-5" href="./index.html">
 					<img src="assets/img/Logo_Amazing_Events.png" alt="Amazing Events Logo" width="120" height="36">
 				</a>
 				<!-- TOGGLE PARA PAGINA REDUCIDA -->
@@ -41,7 +44,7 @@
 					<div class="container w-50">
 						<ul class="navbar-nav justify-content-around ms-auto mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a class="nav-link btn-j px-3 py-1" aria-current="page" role="button" href="#">Home</a>
+								<a class="nav-link btn-j px-3 py-1" aria-current="page" role="button" href="./index.html">Home</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="./upcoming_events.html">Upcoming Events</a>
@@ -53,7 +56,7 @@
 								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="./contact.html">Contact</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="./stats.html">Stats</a>
+								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="#">Stats</a>
 							</li>
 						</ul>
 					</div>
@@ -67,16 +70,16 @@
 		<!-- UN SIMPLE BANNER PARA INDICAR, REDUNDANTEMENTE, EN QUE PAGINA ESTOY PARADO -->
 		<div id="giant-banner" class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="d-flex">
-				<a href="./stats.html" class="carrousel-button">&lt;</a>
+				<a href="./contact.html" class="carrousel-button">&lt;</a>
 			</div>
-			<h2> HOME</h2>
+			<h2> Stats</h2>
 			<div class="d-flex">
-				<a href="./upcoming_events.html" class="carrousel-button">></a>
+				<a href="./index.html" class="carrousel-button">></a>
 			</div>
 		</div>
 
 		<!-- SECCION PARA EL FILTRO DE BUSQUEDA -->
-		<div class="container mt-3 p-md-1" id="div-formulario">
+		<div class="container mt-3 p-md-1 d-none" id="div-formulario">
 				<form>
 
 					<div class="row d-flex">
@@ -122,71 +125,112 @@
 
 		</div>
 
-		<!-- SECCION PARA LAS CARTAS -->
-		<div class="container-fluid" id="cartas">
-			<div class="row d-flex justify-content-sm-evenly mt-0 mx-auto g-5 mb-5 pb-5">
+		<!-- SECCION PARA LA TABLA -->
+		<div class="container w-100 h-75 my-4 p-3" id="stats-table">
 
-				<div class="row row-cols-1 row-cols-xl-4  row-cols-lg-4 row-cols-md-2 row-cols-sm-2 g-4">
+			<table class="blueTable">
+				<thead>
+					<tr>
+						<th colspan="3" >Events statistics</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<td class="italic">Events with the highest percentage of attendance</td>
+						<td class="italic">Events with the lowest percentage of attendance</td>
+						<td class="italic">Event with larger capacity</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
 
+			<table class="blueTable">
+				<thead>
+					<tr>
+						<th colspan="3" >Upcoming events statistics by category</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<td class="italic">Categories</td>
+						<td class="italic">Revenues</td>
+						<td class="italic">Percentage of attendance</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
 
-					<div class="col d-flex justify-content-center">
-						<div class="card h-100">
-							<img src="./assets/img/Cinema.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Cinema</h5>
-								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-								<p class="card-price ms-2"><small>Price: $1800</small></p>
-							</div>
-							<div class="card-footer">
-								<a href="./details.html" class="btn btn-outline-info">View Details</a>
-							</div>
-						</div>
-					</div>
+			<table class="blueTable">
+				<thead>
+					<tr>
+						<th colspan="3" >Past Events statistics by category</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<td class="italic">Categories</td>
+						<td class="italic">Revenues</td>
+						<td class="italic">Percentage of attendance</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
 
-					<div class="col d-flex justify-content-center">
-						<div class="card h-100">
-							<img src="./assets/img/Food_Fair.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Food Fair</h5>
-								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-								<p class="card-price ms-2"><small>Price: $2560</small></p>
-							</div>
-							<div class="card-footer">
-								<a href="./details.html" class="btn btn-outline-info">View Details</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="col d-flex justify-content-center">
-						<div class="card h-100">
-							<img src="./assets/img/Music_Concert.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Music Concert</h5>
-								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-								<p class="card-price ms-2"><small>Price: $3850</small></p>
-							</div>
-							<div class="card-footer">
-								<a href="./details.html" class="btn btn-outline-info">View Details</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="col d-flex justify-content-center">
-						<div class="card h-100">
-							<img src="./assets/img/Museum_Tour.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Museum Tour</h5>
-								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-								<p class="card-price ms-2"><small>Price: $5500</small></p>
-							</div>
-							<div class="card-footer">
-								<a href="./details.html" class="btn btn-outline-info">View Details</a>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
 		</div>
 	
 	</main>
