@@ -291,7 +291,8 @@ table.blueTable thead th:first-child {
 }
 
 .description {
-	border: 1px solid green;
+	border-top: 1px dotted magenta;
+	border-bottom: 1px dotted magenta;
 	height: 25vh;
 }
 
