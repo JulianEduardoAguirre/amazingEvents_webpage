@@ -203,7 +203,14 @@ input[type="checkbox"]:checked {
 }
 
 .card-text {
-	max-height: 9rem;
+	max-height: 6rem;
+	overflow:hidden; 
+	text-overflow: ellipsis;
+
+}
+
+.card-price {
+	max-height: 1.5rem;
 	overflow:hidden; 
 	text-overflow: ellipsis;
 
@@ -223,7 +230,7 @@ input[type="checkbox"]:checked {
 }
 
 .card-body:hover {
-	background-color: rgba(237, 235, 240, 0.95);
+	/* background-color: rgba(237, 235, 240, 0.95); */
 	background-color: rgba(17, 25, 40, 0.75);
 	color: white;
 }
@@ -235,6 +242,13 @@ footer {
 	border-top: 1px solid red;
 }
 
+
+#formulario {
+	background-color: rgba(17, 25, 40, 0.75);
+	color: crimson;
+	font-size: 1.1rem;
+	border-radius: 15px;
+}
 
 
 

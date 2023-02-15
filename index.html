@@ -44,16 +44,16 @@
 								<a class="nav-link btn-j px-3 py-1" aria-current="page" role="button" href="#">Home</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="#">Upcoming Events</a>
+								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="/upcoming_events.html">Upcoming Events</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="#">Past Events</a>
+								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="/past_events.html">Past Events</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="#">Contact</a>
+								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="/contact.html">Contact</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="#">Stats</a>
+								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="/stats.html">Stats</a>
 							</li>
 						</ul>
 					</div>
@@ -67,20 +67,21 @@
 		<!-- UN SIMPLE BANNER PARA INDICAR, REDUNDANTEMENTE, EN QUE PAGINA ESTOY PARADO -->
 		<div id="giant-banner" class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="d-flex">
-				<a href="#" class="carrousel-button">&lt;</a>
+				<a href="/stats.html" class="carrousel-button">&lt;</a>
 			</div>
 			<h2> HOME</h2>
 			<div class="d-flex">
-				<a href="#" class="carrousel-button">></a>
+				<a href="/upcoming_events.html" class="carrousel-button">></a>
 			</div>
 		</div>
 
 		<!-- SECCION PARA EL FILTRO DE BUSQUEDA -->
 		<div class="container mt-3 p-md-1" id="div-formulario">
 				<form>
+
 					<div class="row d-flex">
-						
 						<div class="col-md-6">
+							<!-- CHECKBOXES PARA APLICAR FILTROS POR CATEGORÍA -->
 							<div class="container d-flex my-1">
 								<div class="form-check col-md-2">
 									<input type="checkbox" class="form-check-input" id="a">
@@ -103,15 +104,17 @@
 									<label class="form-check-label" for="e">Category</label>
 								</div>
 							</div>
+
 						</div>
 
 						<div class="col-lg-2 col-md-2"></div>
 
+						<!-- INPUT PARA ESCRIBIR -->
 						<div class="col-lg-3 col-md-12 d-flex">
 								<input class="form-control search-input" type="search" placeholder="Search" aria-label="Search">
-								<!-- <button class="btn btn-outline-success search-submit" type="submit">Search</button> -->
 								<button class="btn"><i class="fa fa-search fa-lg"></i></button>
 						</div>
+
 					</div>
 				
 				</form>
@@ -130,71 +133,71 @@
 						<div class="card h-100">
 							<img src="./assets/img/Cinema.jpg" class="card-img-top" alt="...">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+								<h5 class="card-title">Cinema</h5>
 								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+								<p class="card-price ms-2"><small>Price: $1800</small></p>
 							</div>
 							<div class="card-footer">
-								<a href="#" class="btn btn-outline-info">View Details</a>
-								<!-- <small class="text-muted">Last updated 3 mins ago</small> -->
+								<a href="/details.html" class="btn btn-outline-info">View Details</a>
 							</div>
 						</div>
 					</div>
+
 					<div class="col d-flex justify-content-center">
 						<div class="card h-100">
 							<img src="./assets/img/Food_Fair.jpg" class="card-img-top" alt="...">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+								<h5 class="card-title">Food Fair</h5>
 								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+								<p class="card-price ms-2"><small>Price: $2560</small></p>
 							</div>
 							<div class="card-footer">
-								<a href="#" class="btn btn-outline-info">View Details</a>
-								<!-- <small class="text-muted">Last updated 3 mins ago</small> -->
+								<a href="/details.html" class="btn btn-outline-info">View Details</a>
 							</div>
 						</div>
 					</div>
+
 					<div class="col d-flex justify-content-center">
 						<div class="card h-100">
 							<img src="./assets/img/Music_Concert.jpg" class="card-img-top" alt="...">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+								<h5 class="card-title">Music Concert</h5>
 								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+								<p class="card-price ms-2"><small>Price: $3850</small></p>
 							</div>
 							<div class="card-footer">
-								<a href="#" class="btn btn-outline-info">View Details</a>
-								<!-- <small class="text-muted">Last updated 3 mins ago</small> -->
+								<a href="/details.html" class="btn btn-outline-info">View Details</a>
 							</div>
 						</div>
 					</div>
+
 					<div class="col d-flex justify-content-center">
 						<div class="card h-100">
 							<img src="./assets/img/Museum_Tour.jpg" class="card-img-top" alt="...">
 							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+								<h5 class="card-title">Museum Tour</h5>
 								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+								<p class="card-price ms-2"><small>Price: $5500</small></p>
 							</div>
 							<div class="card-footer">
-								<a href="#" class="btn btn-outline-info">View Details</a>
-								<!-- <small class="text-muted">Last updated 3 mins ago</small> -->
+								<a href="/details.html" class="btn btn-outline-info">View Details</a>
 							</div>
 						</div>
 					</div>
-				</div>
 
+				</div>
 			</div>
 		</div>
 	
-
-
-
 	</main>
 
 
 
+	<!-- FOOTER -->
 	<footer class="footer fixed-bottom mt-auto py-2 bg-light border-danger">
 		<div class="container d-flex justify-content-between align-items-center">
 
 				<ul id="ul_iconos" class="d-flex list-unstyled mb-0">
-				<!-- <ul id="ul_iconos"> -->
 					<li>
 							<a class="btn btn-outline-danger btn-floating rounded-circle mx-3" href="#" role="button">
 							<i class="fab fa-instagram"></i>
@@ -213,7 +216,6 @@
 				</ul>
 
 			<span id="cohort-msg" class="text-muted">Cohort</span>
-			<!-- <span class="text-muted">Place sticky footer content here.</span> -->
 
 		</div>
 	</footer>
