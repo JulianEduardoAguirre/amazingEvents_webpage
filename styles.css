@@ -290,9 +290,6 @@ table.blueTable tr:nth-child(even) {
 table.blueTable thead {
   background: #1C6EA4;
 	background: rgba(187, 135, 140, 0.75);
-  /* background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%); */
-  /* background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%); */
-  /* background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%); */
   border-bottom: 2px solid #444444;
 }
 table.blueTable thead th {
@@ -303,6 +300,57 @@ table.blueTable thead th {
 }
 table.blueTable thead th:first-child {
   border-left: none;
+}
+
+/* ************ DETAILS PAGE ************** */
+#card-details {
+	height: 65vh;
+
+}
+
+.card-details-all {
+	height: 60vh;
+
+}
+
+.description {
+	border: 1px solid green;
+	height: 25vh;
+}
+
+.card-left {
+	height: 55vh;
+	width: 50%;
+	border-bottom-left-radius: 25px;
+	border-top-left-radius: 25px;
+	background-color: rgba(17, 25, 40, 0.45);
+	box-shadow: 2px 2px 4px 3px magenta;
+}
+
+.card-category {
+	color: whitesmoke;
+}
+
+.img-fluid {
+	border: 5px solid #f1eee6;
+	border-radius: 0 !important;
+}
+
+.card-right {
+	height: 55vh;
+	width: 50%;
+	border-bottom-right-radius: 25px;
+	border-top-right-radius: 25px;
+	background-color: rgba(17, 25, 40, 0.95);
+	box-shadow: 2px 2px 4px 3px magenta;
+
+}
+
+
+.card-details-body {
+	color: white;
+	/* height: 100%; */
+	/* border: 1px solid pink; */
 }
 
 
