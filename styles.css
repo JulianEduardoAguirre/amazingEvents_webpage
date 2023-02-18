@@ -260,6 +260,7 @@ footer {
 #stats-table {
 	background-color: rgba(17, 25, 40, 0.75);
 	border-radius: 15px;
+	margin-bottom: 60px !important;
 }
 
 table.blueTable {
