@@ -21,12 +21,11 @@
 </head>
 <!-- HOME -->
 
-<body class="d-flex flex-column">
+<body>
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<!-- TODO EL CONTAINER DE LA NAVBAR -->
-			<div class="container-fluid">
-				<a class="navbar-brand ms-lg-5" href="#">
+				<a class="navbar-brand ms-5" href="./index.html">
 					<img src="assets/img/Logo_Amazing_Events.png" alt="Amazing Events Logo" width="120" height="36">
 				</a>
 				<!-- TOGGLE PARA PAGINA REDUCIDA -->
@@ -37,8 +36,6 @@
 
 				<!-- DIV PARA LOS BOTONES -->
 				<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-					<div class="container w-50"></div>
-					<div class="container w-50">
 						<ul class="navbar-nav justify-content-around ms-auto mb-2 mb-lg-0">
 							<li class="nav-item">
 								<a class="nav-link btn-j px-3 py-1" aria-current="page" role="button" href="#">Home</a>
@@ -56,9 +53,7 @@
 								<a class="nav-link btn-j px-3 py-1" aria-current="page" href="./stats.html">Stats</a>
 							</li>
 						</ul>
-					</div>
 				</div>
-			</div>
 		</nav>
 	</header>
 
@@ -76,30 +71,29 @@
 		</div>
 
 		<!-- SECCION PARA EL FILTRO DE BUSQUEDA -->
-		<div class="container mt-3 p-md-1" id="div-formulario">
-				<form>
+		<div class="container mt-3 p-1" id="div-formulario">
+				<form class="d-md-flex justify-content-lg-around justify-content-md-around">
 
-					<div class="row d-flex">
-						<div class="col-md-6">
+						<div class="d-inline-block categories">
 							<!-- CHECKBOXES PARA APLICAR FILTROS POR CATEGORÍA -->
-							<div class="container d-flex my-1">
-								<div class="form-check col-md-2">
+							<div class="container d-sm-flex my-1 gap-2">
+								<div class="form-check ">
 									<input type="checkbox" class="form-check-input" id="a">
 									<label class="form-check-label" for="a">Category</label>
 								</div>
-								<div class="form-check ms-sm-1 ms-md-5  ms-lg-4 col-md-2">
+								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="b">
 									<label class="form-check-label" for="b">Category</label>
 								</div>
-								<div class="form-check ms-sm-1 ms-md-5  ms-lg-4 col-md-2">
+								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="c">
 									<label class="form-check-label" for="c">Category</label>
 								</div>
-								<div class="form-check ms-sm-1 ms-md-5  ms-lg-4 col-md-2">
+								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="d">
 									<label class="form-check-label" for="d">Category</label>
 								</div>
-								<div class="form-check ms-sm-1 ms-md-5  ms-lg-4 col-md-2">
+								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="e">
 									<label class="form-check-label" for="e">Category</label>
 								</div>
@@ -107,15 +101,13 @@
 
 						</div>
 
-						<div class="col-lg-2 col-md-2"></div>
 
 						<!-- INPUT PARA ESCRIBIR -->
-						<div class="col-lg-3 col-md-12 d-flex">
+						<div class="d-flex">
 								<input class="form-control search-input" type="search" placeholder="Search" aria-label="Search">
 								<button class="btn"><i class="fa fa-search fa-lg"></i></button>
 						</div>
 
-					</div>
 				
 				</form>
 
@@ -124,12 +116,9 @@
 
 		<!-- SECCION PARA LAS CARTAS -->
 		<div class="container-fluid" id="cartas">
-			<div class="row d-flex justify-content-sm-evenly mt-0 mx-auto g-5 mb-5 pb-5">
+			<div class="row mt-5 justify-content-around mb-5">
 
-				<div class="row row-cols-1 row-cols-xl-4  row-cols-lg-4 row-cols-md-2 row-cols-sm-2 g-4">
-
-
-					<div class="col d-flex justify-content-center">
+					<div class="col-xxl-3 col-md-6 col-sm-10 mb-4 d-flex justify-content-center">
 						<div class="card h-100">
 							<img src="./assets/img/Cinema.jpg" class="card-img-top" alt="...">
 							<div class="card-body">
@@ -143,7 +132,7 @@
 						</div>
 					</div>
 
-					<div class="col d-flex justify-content-center">
+					<div class="col-xxl-3 col-md-6 col-sm-10 mb-4 d-flex justify-content-center">
 						<div class="card h-100">
 							<img src="./assets/img/Food_Fair.jpg" class="card-img-top" alt="...">
 							<div class="card-body">
@@ -157,7 +146,7 @@
 						</div>
 					</div>
 
-					<div class="col d-flex justify-content-center">
+					<div class="col-xxl-3 col-md-6 col-sm-10 mb-4 d-flex justify-content-center">
 						<div class="card h-100">
 							<img src="./assets/img/Music_Concert.jpg" class="card-img-top" alt="...">
 							<div class="card-body">
@@ -171,7 +160,7 @@
 						</div>
 					</div>
 
-					<div class="col d-flex justify-content-center">
+					<div class="col-xxl-3 col-md-6 col-sm-10 mb-4 d-flex justify-content-center">
 						<div class="card h-100">
 							<img src="./assets/img/Museum_Tour.jpg" class="card-img-top" alt="...">
 							<div class="card-body">
@@ -185,7 +174,6 @@
 						</div>
 					</div>
 
-				</div>
 			</div>
 		</div>
 	
@@ -194,22 +182,21 @@
 
 
 	<!-- FOOTER -->
-	<footer class="footer fixed-bottom mt-auto py-2 bg-light border-danger">
-		<div class="container d-flex justify-content-between align-items-center">
+	<footer class="footer fixed-bottom d-flex justify-content-around bg-light border-danger">
 
-				<ul id="ul_iconos" class="d-flex list-unstyled mb-0">
+				<ul id="ul_iconos" class="d-flex list-unstyled mt-1 mb-0">
 					<li>
-							<a class="btn btn-outline-danger btn-floating rounded-circle mx-3" href="#" role="button">
+							<a class="btn btn-outline-danger btn-floating rounded-circle mx-1 mx-lg-3" href="#" role="button">
 							<i class="fab fa-instagram"></i>
 							</a>
 					</li>
 					<li>
-							<a class="btn btn-outline-danger btn-floating rounded-circle mx-3" href="#" role="button">
+							<a class="btn btn-outline-danger btn-floating rounded-circle mx-1 mx-lg-3" href="#" role="button">
 							<i class="fab fa-facebook-square"></i>
 							</a>
 					</li>
 					<li>
-							<a class="btn btn-outline-danger btn-floating rounded-circle mx-3" href="#" role="button">
+							<a class="btn btn-outline-danger btn-floating rounded-circle mx-1 mx-lg-3" href="#" role="button">
 							<i class="fab fa-whatsapp"></i>
 							</a>
 					</li>
@@ -217,7 +204,6 @@
 
 			<span id="cohort-msg" class="text-muted">Cohort</span>
 
-		</div>
 	</footer>
 
 	<!-- FUNCIONALIDADES BOOTSTRAP 5 -->
