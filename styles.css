@@ -311,7 +311,7 @@ table.blueTable thead th:first-child {
 
 /* ************ DETAILS PAGE ************** */
 #card-details {
-	height: 65vh;
+	height: auto;
 }
 
 .card-details-all {
@@ -356,6 +356,16 @@ table.blueTable thead th:first-child {
 	color: white;
 }
 
+@media (max-width: 375px){
+	.text-muted {
+		font-size: .75rem;
+	}
+
+	.description {
+		height: 20vh;
+	}
+
+}
 
 
  @media (min-width: 320px){
