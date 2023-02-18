@@ -122,11 +122,19 @@ main {
 	border-radius: 10px;
 	backdrop-filter: blur(2px) saturate(0%);
 	background-color: rgba(237, 235, 240, 0.9);
-	font-size: 1.1em;
+	/* font-size: 1.1em; */
 }
 
+@media (max-width: 576px){
+	.categories {
+		font-size: medium;
+	}
+}
+
+
+
 #div-formulario label {
-  font-size: 1em;
+  /* font-size: 1em; */
 	font-family: inherit;
 	font-weight: 600;
 	z-index: 10;
@@ -136,6 +144,9 @@ input[type="checkbox"]:checked {
   background: crimson;
 }
 
+
+
+/* ESPACIO PARA LAS CARTAS */
 #cartas {
 	height: auto;
 }
