@@ -23,8 +23,9 @@ function generar_tarjetas(data){
 }
 
 
-
+// Contenedor de tarjetas
 const div_tarjetas = document.getElementById("cartas");
+//Si tiene contenido, lo elimino primero
 while(div_tarjetas.firstChild) {
 					div_tarjetas.removeChild(div_tarjetas.firstChild);
 			}

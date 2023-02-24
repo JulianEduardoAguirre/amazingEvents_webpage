@@ -1,5 +1,6 @@
 function generar_tarjetas_pasado(data){
 	let html_tarjetas = `<div class="row mt-5 justify-content-around mb-5">`;
+	
 	for (const evento of data.events) {
 	
 		if(data.currentDate > evento.date) {
@@ -21,13 +22,14 @@ function generar_tarjetas_pasado(data){
 
 
 	}
+
 	html_tarjetas += `</div>`
 	return html_tarjetas;
 }
 
-
-
+// Contenedor de tarjetas
 const div_tarjetas = document.getElementById("cartas");
+//Si tiene contenido, lo elimino primero
 while(div_tarjetas.firstChild) {
 					div_tarjetas.removeChild(div_tarjetas.firstChild);
 			}
