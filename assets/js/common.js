@@ -1,8 +1,10 @@
-let isPast = (fecha1, fecha2) => {
-	let html_boton = '<a href="./details.html" class="btn btn-outline-secondary">View Details</a>'
+
+// Función 
+let buttonClassSelector = (fecha1, fecha2) => {
+	let btnClass = '"btn btn-outline-secondary"'
 	if (fecha1 < fecha2){
-		html_boton = '<a href="./details.html" class="btn btn-outline-info">View Details</a>'
+		btnClass = '"btn btn-outline-info"'
 	}
 
-	return html_boton;
+	return btnClass;
 }
