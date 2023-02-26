@@ -18,7 +18,6 @@ function generar_tarjetas_futuro(data){
 				</div>
 				<hr class="mb-2 mt-2">
 				<p class="card-text mb-2">${evento.description}</p>
-				<p class="card-price mt-0"><small>Price: $${evento.price}</small></p>
 				</div>
 				<div class="card-footer">
 					<a href="./details.html" class=${btnClass}>View Details</a>
