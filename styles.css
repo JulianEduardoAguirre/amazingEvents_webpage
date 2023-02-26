@@ -150,7 +150,7 @@ input[type="checkbox"]:checked {
 .card {
 	border-radius: 40px;
 	min-width: 300px;
-	max-width: 310px;
+	max-width: 300px;
 	min-height: 375px;
 	max-height: 425px;
 	backdrop-filter: blur(2px) saturate(0%);
