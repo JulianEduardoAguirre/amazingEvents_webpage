@@ -29,8 +29,8 @@ const checkBoxGenerator = (data) => {
 
 	categoriesSet.forEach(categoria => 
 		{ checkBoxHTML += `	<div class="form-check ">
-			<input type="checkbox" class="form-check-input" id="a">
-			<label class="form-check-label" for="a">${categoria}</label>
+			<input type="checkbox" class="form-check-input" value="${categoria}" id="checkCat-${categoria}">
+			<label class="form-check-label" for="checkCat-${categoria}">${categoria}</label>
 			</div>`
 		
 		});
@@ -40,6 +40,24 @@ const checkBoxGenerator = (data) => {
 	return checkBoxHTML;
 }
 
-const searchInput = document.getElementById("search");
-console.log(searchInput)
+document.getElementById("lupita").addEventListener("click", filtro);
+
+function filtro() {
+	// console.log(data)
+	const palabraBuscada = document.getElementById("search").value.toLowerCase();
+	// console.log(palabraBuscada)
+	const mi_array = [];
+
+	data.events.forEach((evento) => {
+		if(evento.name.toLowerCase().includes(palabraBuscada)){
+			mi_array.push(evento)
+		}
+	})
+
+	console.log(mi_array);
+}
+
+
+
+
 
