@@ -10,17 +10,18 @@ let buttonClassSelector = (fecha1, fecha2) => {
 }
 
 
+
+// FUNCION PARA OBTENER TODAS LAS CATEGORIAS DENTRO DEL OBJETO DATA
 const categorySetGenerator = (data) => {
 	let categoriesSet = new Set();
-	for (const evento of data.events) {
-		categoriesSet.add(evento.category)
-	}
-
+	data.events.forEach( evento => categoriesSet.add(evento.category) )
+	// console.log(categoriesSet)
 	return categoriesSet;
 }
 
 
 
+// FUNCION PARA GENERAR LOS CHECKBOXES
 const checkBoxGenerator = (data) => {
 
 	categoriesSet = categorySetGenerator(data);
@@ -28,7 +29,7 @@ const checkBoxGenerator = (data) => {
 	let checkBoxHTML = `<div class="container d-sm-flex my-1 gap-2">`;
 
 	categoriesSet.forEach(categoria => 
-		{ checkBoxHTML += `	<div class="form-check ">
+		{ checkBoxHTML += `	<div class="form-check ms-2">
 			<input type="checkbox" class="form-check-input" value="${categoria}" id="checkCat-${categoria}">
 			<label class="form-check-label" for="checkCat-${categoria}">${categoria}</label>
 			</div>`
@@ -40,7 +41,14 @@ const checkBoxGenerator = (data) => {
 	return checkBoxHTML;
 }
 
-document.getElementById("lupita").addEventListener("click", filtro);
+
+
+
+
+
+
+
+document.getElementById("search").addEventListener("input", filtro);
 
 function filtro() {
 	// console.log(data)
@@ -54,7 +62,8 @@ function filtro() {
 		}
 	})
 
-	console.log(mi_array);
+	// console.log(mi_array);
+	return mi_array
 }
 
 

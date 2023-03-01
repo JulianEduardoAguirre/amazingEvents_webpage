@@ -36,6 +36,8 @@ while(div_tarjetas.firstChild) {
 					div_tarjetas.removeChild(div_tarjetas.firstChild);
 			}
 
+const new_data = filtro(data);
+
 div_tarjetas.innerHTML = generar_tarjetas(data);
 
 // Contenedor de checkboxes
