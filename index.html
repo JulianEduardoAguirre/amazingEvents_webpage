@@ -6,23 +6,23 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+
 	<!-- Bootstrap 5 -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
 	<!-- Font Awesome -->
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
-
 	<!-- Estilo propio -->
 	<link rel="stylesheet" href="styles.css">
 
-
 	<title>Amazing Events - Home</title>
+
 </head>
 
 <!-- HOME -->
 
 <body>
+	<!-- CABECERA - POSEE LOS BOTONES DE NAVEGACION -->
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<!-- TODO EL CONTAINER DE LA NAVBAR -->
@@ -58,9 +58,10 @@
 		</nav>
 	</header>
 
+	<!-- PRINCIPAL - CONTIENE 'CARRUSEL', FILTRO(checkboxes y search) y TARJETAS. -->
 	<main>
 
-		<!-- UN SIMPLE BANNER PARA INDICAR, REDUNDANTEMENTE, EN QUE PAGINA ESTOY PARADO -->
+		<!-- BANNER TIPO CARROUSEL-->
 		<div id="giant-banner" class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="d-flex">
 				<a href="./stats.html" class="carrousel-button">&lt;</a>
@@ -71,7 +72,7 @@
 			</div>
 		</div>
 
-		<!-- SECCION PARA EL FILTRO DE BUSQUEDA -->
+		<!-- FILTRO DE BUSQUEDA -->
 		<div class="container mt-3 p-1" id="div-formulario">
 				<form class="d-md-flex justify-content-lg-around justify-content-md-around">
 
@@ -115,7 +116,7 @@
 
 		</div>
 
-		<!-- SECCION PARA LAS CARTAS -->
+		<!-- CARTAS -->
 		<div class="container-fluid" id="cartas">
 
 			<!-- TODO ESTO DE ABAJO LO ELIMINO DE POR SI EN EL JS, SI ES QUE EXiSTE -->
@@ -183,9 +184,7 @@
 	
 	</main>
 
-
-
-	<!-- FOOTER -->
+	<!-- PIE DE PAGINA -->
 	<footer class="footer fixed-bottom d-flex justify-content-around bg-light border-danger">
 
 				<ul id="ul_iconos" class="d-flex list-unstyled mt-1 mb-0">
@@ -214,12 +213,13 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
-		<!-- Modelo de datos para las tarjetas -->
-		<script src="./assets/js/data.js"></script>
-		<!-- Archivo para colocar funciones comunes -->
-		<script src="./assets/js/common.js"></script>
-		<!-- Función para generar las tarjetas -->
-		<script src="./assets/js/index.js"></script>
+
+	<!-- Modelo de datos para las tarjetas -->
+	<script src="./assets/js/data.js"></script>
+	<!-- Archivo para colocar funciones comunes -->
+	<script src="./assets/js/common.js"></script>
+	<!-- Función para generar las tarjetas -->
+	<script src="./assets/js/index.js"></script>
 
 </body>
 
