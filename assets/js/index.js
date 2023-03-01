@@ -37,3 +37,11 @@ while(div_tarjetas.firstChild) {
 			}
 
 div_tarjetas.innerHTML = generar_tarjetas(data);
+
+// Contenedor de checkboxes
+const div_checkboxes = document.getElementById("checkboxes")
+while(div_checkboxes.firstChild) {
+	div_checkboxes.removeChild(div_checkboxes.firstChild);
+}
+
+div_checkboxes.innerHTML = checkBoxGenerator(data);
