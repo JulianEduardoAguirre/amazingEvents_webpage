@@ -24,15 +24,18 @@ const categorySetGenerator = (data) => {
 const checkBoxGenerator = (data) => {
 
 	categoriesSet = categorySetGenerator(data);
+
 	let checkBoxHTML = `<div class="container d-sm-flex my-1 gap-2">`;
 
-	for (const categoria of categoriesSet) {
-		checkBoxHTML += `	<div class="form-check ">
-		<input type="checkbox" class="form-check-input" id="a">
-		<label class="form-check-label" for="a">${categoria}</label>
-	</div>`
-	}
+	categoriesSet.forEach(categoria => 
+		{ checkBoxHTML += `	<div class="form-check ">
+			<input type="checkbox" class="form-check-input" id="a">
+			<label class="form-check-label" for="a">${categoria}</label>
+			</div>`
+		
+		});
 
 	checkBoxHTML += "</div>"
+	
 	return checkBoxHTML;
 }
