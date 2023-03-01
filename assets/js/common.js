@@ -36,6 +36,10 @@ const checkBoxGenerator = (data) => {
 		});
 
 	checkBoxHTML += "</div>"
-	
+
 	return checkBoxHTML;
 }
+
+const searchInput = document.getElementById("search");
+console.log(searchInput)
+
