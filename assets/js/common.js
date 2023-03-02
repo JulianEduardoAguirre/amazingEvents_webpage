@@ -1,5 +1,5 @@
 
-// Función 
+// Asignación del tipo de botón "view details" según date de la tarjeta 
 let buttonClassSelector = (fecha1, fecha2) => {
 	let btnClass = '"btn btn-outline-secondary"'
 	if (fecha1 < fecha2){
@@ -48,23 +48,6 @@ const checkBoxGenerator = (data) => {
 
 
 
-document.getElementById("search").addEventListener("input", filtro);
-
-function filtro() {
-	// console.log(data)
-	const palabraBuscada = document.getElementById("search").value.toLowerCase();
-	// console.log(palabraBuscada)
-	const mi_array = [];
-
-	data.events.forEach((evento) => {
-		if(evento.name.toLowerCase().includes(palabraBuscada)){
-			mi_array.push(evento)
-		}
-	})
-
-	// console.log(mi_array);
-	return mi_array
-}
 
 
 
