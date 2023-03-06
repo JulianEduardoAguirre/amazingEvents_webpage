@@ -37,6 +37,10 @@ let listaCheckboxes = filtroCheckboxes()
 const inputSearch = document.getElementById("search")
 inputSearch.addEventListener("input", () => {
 	let eventosFiltrados = data.events.filter((evento) => evento.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
+	// let misEventos = filtroCheckboxes();
+	// console.log(misEventos)
+	// let eventosFiltrados = data.events.filter((evento) => evento.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
+	// let eventosFiltrados = misEventos.filter((evento) => evento.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
 
 
 	// Contenedor de tarjetas
@@ -56,15 +60,37 @@ inputSearch.addEventListener("input", () => {
 
 
 function filtroCheckboxes() {
-	// var listArray1 = []
-	let eventosFiltradosPorCategoria = []
-	const checkboxes = document.querySelectorAll(".form-check-input")
+	// var listArray1 = []	
+	// let eventosBase = data.events
+	const inputSearch = document.getElementById("search");
+	let eventosBase;
 	
+	let eventosFiltradosPorCategoria = []	
+	const checkboxes = document.querySelectorAll(".form-check-input")
+	let subArray;
+
+
 	for(let checkbox of checkboxes) {
 		checkbox.addEventListener("click", function() {
+
+			if(inputSearch.value == ""){
+				eventosBase = data.events
+			} else {
+				eventosBase = data.events.filter((evento) => evento.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
+			}
+
+			console.log(eventosBase)
+
 			if(this.checked == true) {
 				// listArray1.push(checkbox.getAttribute("value"));
-				subArray = data.events.filter((evento) => evento.category.includes(checkbox.getAttribute("value"))).forEach(e => eventosFiltradosPorCategoria.push(e))
+
+
+				// subArray = data.events.filter((evento) => evento.category.includes(checkbox.getAttribute("value"))).forEach(e => eventosFiltradosPorCategoria.push(e))
+				subArray = eventosBase.filter((evento) => evento.category.includes(checkbox.getAttribute("value"))).forEach(e => eventosFiltradosPorCategoria.push(e))
+				// console.log(subArray)
+
+
+
 				// subArray.forEach(e => eventosFiltradosPorCategoria.push(e))
 				// data.events.filter((evento) => eventosFiltradosPorCategoria.push(evento.category.includes(checkbox.getAttribute("value"))))
 			}
@@ -73,21 +99,16 @@ function filtroCheckboxes() {
 				eventosFiltradosPorCategoria = eventosFiltradosPorCategoria.filter(e => e.category !== this.value)
 			}
 			// nuevosFiltrados = data.events.filter((evento) => evento.category.includes(checkbox.getAttribute("value")))
-			console.log(eventosFiltradosPorCategoria)
+			// console.log(eventosFiltradosPorCategoria)
+			// console.log(eventosBase)
 
-			if(eventosFiltradosPorCategoria.length == 0) {
-				eventosFiltradosPorCategoria = data.events
-			}
+			// if(eventosFiltradosPorCategoria.length == 0) {
+			// 	div_tarjetas.innerHTML = generar_tarjetas2(data.events, data.currentDate);
+			// } else {
+			// 	div_tarjetas.innerHTML = generar_tarjetas2(eventosFiltradosPorCategoria, data.currentDate);
+			// }
 		
-			// Contenedor de tarjetas
-			const div_tarjetas = document.getElementById("cartas");
-			//Si tiene contenido, lo elimino primero
-			while(div_tarjetas.firstChild) {
-				div_tarjetas.removeChild(div_tarjetas.firstChild);
-			}
-			
-			div_tarjetas.innerHTML = generar_tarjetas2(eventosFiltradosPorCategoria, data.currentDate);
-			// console.log(listArray1)		//Perfecto, hasta aquí funciona bien
+				div_tarjetas.innerHTML = generar_tarjetas2(eventosFiltradosPorCategoria, data.currentDate);
 
 		})
 	}
@@ -101,24 +122,24 @@ function filtroCheckboxes() {
 
 }
 
-function aVer(listaDeFiltrado) {
-	const checkboxes = document.querySelectorAll(".form-check-input")
-	for (let checkbox of checkboxes){
-		checkbox.addEventListener("click", function() {
-			if (listArray1.length != 0){
-				data.events.forEach(element => {
-					if(listArray1.includes(element.category)){
-						eventosFiltradosPorCategoria.push(element)
-					}
-				});
+// function aVer(listaDeFiltrado) {
+// 	const checkboxes = document.querySelectorAll(".form-check-input")
+// 	for (let checkbox of checkboxes){
+// 		checkbox.addEventListener("click", function() {
+// 			if (listArray1.length != 0){
+// 				data.events.forEach(element => {
+// 					if(listArray1.includes(element.category)){
+// 						eventosFiltradosPorCategoria.push(element)
+// 					}
+// 				});
 				
-			} else {
-				return data.events
-			}
-		})
-	}
+// 			} else {
+// 				return data.events
+// 			}
+// 		})
+// 	}
 
-}
+// }
 
 // let listaCheckboxes = filtroCheckboxes()
 
