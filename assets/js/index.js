@@ -27,11 +27,11 @@ div_checkboxes.innerHTML = checkBoxGenerator(data);
 
 
 
-//FILTRO?
-// const new_data = filtro(data);
 
-// div_tarjetas.innerHTML = generar_tarjetas(data);
 
+
+
+//SECCION DE FILTRADO USANDO LA BARRA DE BÚSQUEDA Y CHECKBOXES
 const inputSearch = document.getElementById("search")
 inputSearch.addEventListener("input", () => {
 	let eventosFiltrados = data.events.filter((evento) => evento.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
@@ -48,6 +48,29 @@ inputSearch.addEventListener("input", () => {
 
 
 })
+
+
+//PRUEBAS PARA LOS CHECHBOXES
+const lista_categoria = []
+var listArray1 = []
+const checkboxes = document.querySelectorAll(".form-check-input")
+
+// console.log(checkboxes) //FUNCIONANDO
+
+for(let checkbox of checkboxes) {
+	console.log(checkbox.getAttribute("value"))
+	checkbox.addEventListener("click", function() {
+		if(this.checked == true) {
+			listArray1.push(checkbox.getAttribute("value"));
+		}
+		else {
+			listArray1 = listArray1.filter(e => e !== this.value)
+		}
+	})
+}
+
+console.log(listArray1)
+
 
 
 
