@@ -26,6 +26,8 @@ while(div_checkboxes.firstChild) {
 div_checkboxes.innerHTML = checkBoxGenerator(data);
 
 
+let listaCheckboxes = filtroCheckboxes()
+
 
 
 
@@ -54,42 +56,72 @@ inputSearch.addEventListener("input", () => {
 
 
 function filtroCheckboxes() {
-	var listArray1 = []
-	var nuevosFiltrados = []
+	// var listArray1 = []
+	let eventosFiltradosPorCategoria = []
 	const checkboxes = document.querySelectorAll(".form-check-input")
 	
 	for(let checkbox of checkboxes) {
-		// console.log(checkbox.getAttribute("value"))
 		checkbox.addEventListener("click", function() {
-			// console.log(listArray1)
 			if(this.checked == true) {
-				listArray1.push(checkbox.getAttribute("value"));
-				nuevosFiltrados = data.events.filter((evento) => evento.category.includes(checkbox.getAttribute("value")))
-				console.log(nuevosFiltrados)
-
+				// listArray1.push(checkbox.getAttribute("value"));
+				subArray = data.events.filter((evento) => evento.category.includes(checkbox.getAttribute("value"))).forEach(e => eventosFiltradosPorCategoria.push(e))
+				// subArray.forEach(e => eventosFiltradosPorCategoria.push(e))
+				// data.events.filter((evento) => eventosFiltradosPorCategoria.push(evento.category.includes(checkbox.getAttribute("value"))))
 			}
 			else {
-				listArray1 = listArray1.filter(e => e !== this.value)
+				// listArray1 = listArray1.filter(e => e !== this.value)
+				eventosFiltradosPorCategoria = eventosFiltradosPorCategoria.filter(e => e.category !== this.value)
+			}
+			// nuevosFiltrados = data.events.filter((evento) => evento.category.includes(checkbox.getAttribute("value")))
+			console.log(eventosFiltradosPorCategoria)
+
+			if(eventosFiltradosPorCategoria.length == 0) {
+				eventosFiltradosPorCategoria = data.events
+			}
+		
+			// Contenedor de tarjetas
+			const div_tarjetas = document.getElementById("cartas");
+			//Si tiene contenido, lo elimino primero
+			while(div_tarjetas.firstChild) {
+				div_tarjetas.removeChild(div_tarjetas.firstChild);
+			}
+			
+			div_tarjetas.innerHTML = generar_tarjetas2(eventosFiltradosPorCategoria, data.currentDate);
+			// console.log(listArray1)		//Perfecto, hasta aquí funciona bien
+
+		})
+	}
+
+
+
+
+
+
+	return eventosFiltradosPorCategoria;
+
+}
+
+function aVer(listaDeFiltrado) {
+	const checkboxes = document.querySelectorAll(".form-check-input")
+	for (let checkbox of checkboxes){
+		checkbox.addEventListener("click", function() {
+			if (listArray1.length != 0){
+				data.events.forEach(element => {
+					if(listArray1.includes(element.category)){
+						eventosFiltradosPorCategoria.push(element)
+					}
+				});
+				
+			} else {
+				return data.events
 			}
 		})
 	}
-	
-	console.log(nuevosFiltrados)
-	return nuevosFiltrados
+
 }
 
-const listaCheckboxes = filtroCheckboxes()
+// let listaCheckboxes = filtroCheckboxes()
 
-
-function dataFiltradoCheckboxes(datos, listas) {
-	let nuevosFiltrados = datos.events.filter((evento) => listas.includes(evento.category))
-	console.log(listas)
-	console.log(datos.events)
-	console.log(nuevosFiltrados)
-	return nuevosFiltrados;
-}
-
-// nuevosDatos = dataFiltradoCheckboxes(data, listaCheckboxes)
 
 
 
