@@ -51,26 +51,45 @@ inputSearch.addEventListener("input", () => {
 
 
 //PRUEBAS PARA LOS CHECHBOXES
-const lista_categoria = []
-var listArray1 = []
-const checkboxes = document.querySelectorAll(".form-check-input")
 
-// console.log(checkboxes) //FUNCIONANDO
 
-for(let checkbox of checkboxes) {
-	console.log(checkbox.getAttribute("value"))
-	checkbox.addEventListener("click", function() {
-		if(this.checked == true) {
-			listArray1.push(checkbox.getAttribute("value"));
-		}
-		else {
-			listArray1 = listArray1.filter(e => e !== this.value)
-		}
-	})
+function filtroCheckboxes() {
+	var listArray1 = []
+	var nuevosFiltrados = []
+	const checkboxes = document.querySelectorAll(".form-check-input")
+	
+	for(let checkbox of checkboxes) {
+		// console.log(checkbox.getAttribute("value"))
+		checkbox.addEventListener("click", function() {
+			// console.log(listArray1)
+			if(this.checked == true) {
+				listArray1.push(checkbox.getAttribute("value"));
+				nuevosFiltrados = data.events.filter((evento) => evento.category.includes(checkbox.getAttribute("value")))
+				console.log(nuevosFiltrados)
+
+			}
+			else {
+				listArray1 = listArray1.filter(e => e !== this.value)
+			}
+		})
+	}
+	
+	console.log(nuevosFiltrados)
+	return nuevosFiltrados
 }
 
-console.log(listArray1)
+const listaCheckboxes = filtroCheckboxes()
 
+
+function dataFiltradoCheckboxes(datos, listas) {
+	let nuevosFiltrados = datos.events.filter((evento) => listas.includes(evento.category))
+	console.log(listas)
+	console.log(datos.events)
+	console.log(nuevosFiltrados)
+	return nuevosFiltrados;
+}
+
+// nuevosDatos = dataFiltradoCheckboxes(data, listaCheckboxes)
 
 
 

@@ -90,7 +90,7 @@ function generar_tarjetas2(eventos, fechaRef){
 			html_tarjetas += generar_tarjeta(evento, buttonClassSelector2(fechaRef, evento.date))
 		})
 	} else {
-		html_tarjetas += `<h1 class="text-center" style="color:white;font-size:3rem;">Ups, no coincidences!</h1>`
+		html_tarjetas += `<h1 class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</h1>`
 	}
 
 	return html_tarjetas + `</div>`
