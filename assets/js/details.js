@@ -1,25 +1,16 @@
 let params = new URLSearchParams(document.location.search)
 let id = params.get("id")
 
-// console.log(id)
-
 let evento = data.events.filter(info => info._id == id)
 eventoSolo = evento[0]
-// console.log(evento)
 
 const details_container = document.getElementById("card-details")
-// console.log(details_container)
+while(details_container.firstChild) {details_container.removeChild(details_container.firstChild);} 		//Delete content (If any)
 
-//Si tiene contenido, lo elimino primero
-while(details_container.firstChild) {
-					details_container.removeChild(details_container.firstChild);
-			}
-
-// let assintanceOrEstimated = data.currentDate <= eventoSolo.date ? "Assistance: ".concat(`${eventoSolo.assistance}`):"Estimated: ".concat(`${eventoSolo.estimate}`);
-// let assintanceOrEstimated = data.currentDate <= eventoSolo.date ? "Estimated: ".concat(`${eventoSolo.estimate}`):"Assistance: ".concat(`${eventoSolo.assistance}`);
+// EVENTS COULD HAVE ASSISTANCE OR ESTIMATE PROPERTY
 let assintanceOrEstimated = eventoSolo.hasOwnProperty("assistance") ? "Estimated: ".concat(`${eventoSolo.assistance}`):"Assistance: ".concat(`${eventoSolo.estimate}`);
-// console.log(assintanceOrEstimated)
 
+// CONTENT TEMPLATE STRING
 let detailsContent = `
 <div class="card-details-all p-3">
 <div class="row g-0">

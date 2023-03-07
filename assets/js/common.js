@@ -1,30 +1,16 @@
 
-// // Asignación del tipo de botón "view details" según date de la tarjeta 
-// let buttonClassSelector = (fecha1, fecha2) => {
-// 	let btnClass = '"btn btn-outline-secondary"'
-// 	if (fecha1 < fecha2){
-// 		btnClass = '"btn btn-outline-info"'
-// 	}
-	
-// 	return btnClass;
-// }
-
-// const buttonClassSelector2 = (fecha1, fecha2) => {return fecha1<=fecha2 ? '"btn btn-outline-info"' : '"btn btn-outline-secondary"' }
-
-
-
-// SET OBJECT WITH THE CATEGORIES
-const categorySetGenerator = (data) => {
+// SET WITH THE CATEGORIES
+const categorySetGenerator = (allEvents) => {
 	let categoriesSet = new Set();
-	data.events.forEach( evento => categoriesSet.add(evento.category) )
+	allEvents.forEach( evento => categoriesSet.add(evento.category) )
 	return categoriesSet;
 }
 
 
 // CHECKBOX SQUARES GENERATOR
-const checkBoxGenerator = (data) => {
+const checkBoxGenerator = (events) => {
 
-	categoriesSet = categorySetGenerator(data);
+	categoriesSet = categorySetGenerator(events);
 
 	let checkBoxHTML = `<div class="container d-sm-flex my-1 gap-2">`;
 
@@ -42,13 +28,10 @@ const checkBoxGenerator = (data) => {
 }
 
 
-
 // GO TO DETAILS
 function viewDetails(card_id) {
 	window.location.href = `./details.html?id=${card_id}`
 }
-
-
 
 
 // ONE CARD GENERATOR
@@ -91,6 +74,8 @@ function generar_tarjetas2(eventos, fechaRef){
 	return html_tarjetas + `</div>`
 }
 
+
+// FILTER BASED ON FILTER SECTION
 function filterContent() {
 	// Checkboxes (only selected)
 	let categoriesFound = [];
@@ -99,11 +84,11 @@ function filterContent() {
 	// Input search current value
 	let searchWord = document.getElementById("search").value.toLowerCase();
 	
-	let filteredEvents = data.events		//Initially, got all events
+	let filteredEvents = filterByDate()		//Initially, got all events
 
 	// data object filter section
 	if ( categoriesFound.length != 0){
-		filteredEvents = data.events.filter( evento => categoriesFound.includes(evento.category))
+		filteredEvents = filteredEvents.filter( evento => categoriesFound.includes(evento.category))
 	}
 
 	if (searchWord != ""){
@@ -114,14 +99,15 @@ function filterContent() {
 }
 
 
+// FILTER BASED ON DATE (BASED ON CURRENT URL)
+function filterByDate() {
+	let currentURL = window.location.href
+	let eventsFilteredByDate = data.events
+	if( currentURL.includes("upcoming")){
+		eventsFilteredByDate = data.events.filter( e => e.date >= data.currentDate)
+	} else if (currentURL.includes("past")){
+		eventsFilteredByDate = data.events.filter( e => e.date < data.currentDate)
+	}
 
-
-
-
-
-
-
-
-
-
-
+	return eventsFilteredByDate;
+}

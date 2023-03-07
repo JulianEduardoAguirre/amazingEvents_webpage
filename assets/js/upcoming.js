@@ -6,7 +6,7 @@
 const div_tarjetas = document.getElementById("cartas");
 while(div_tarjetas.firstChild) {div_tarjetas.removeChild(div_tarjetas.firstChild);}	  			//Delete all previous content (if exists)
 
-div_tarjetas.innerHTML = generar_tarjetas2(data.events, data.currentDate);									//First time rendering cards (using all data)
+div_tarjetas.innerHTML = generar_tarjetas2(filterByDate(), data.currentDate);									//First time rendering cards (using all data)
 
 
 // FILTER SECTION (CHECKBOXES & INPUT)
@@ -15,7 +15,7 @@ div_tarjetas.innerHTML = generar_tarjetas2(data.events, data.currentDate);						
 const div_checkboxes = document.getElementById("checkboxes")
 while(div_checkboxes.firstChild) { div_checkboxes.removeChild(div_checkboxes.firstChild);}	//Delete all previous content (if exists)
 
-div_checkboxes.innerHTML = checkBoxGenerator(data);																					//First (and unique) time rendering checkboxes
+div_checkboxes.innerHTML = checkBoxGenerator(filterByDate());																					//First (and unique) time rendering checkboxes
 
 
 
