@@ -137,6 +137,15 @@ main {
 	z-index: 10;
 }
 
+@media (max-width: 1024px){
+	.div-search {
+		width: 95%;
+		margin: 0 auto;
+	}
+	
+}
+
+
 input[type="checkbox"]:checked {
   background: crimson;
 }
@@ -340,7 +349,9 @@ table.blueTable thead th:first-child {
 	color: whitesmoke;
 }
 
-.img-fluid {
+.details-image {
+	max-height: 75%;
+	width: 90%;
 	border: 5px solid #f1eee6;
 	border-radius: 0 !important;
 }
@@ -365,7 +376,7 @@ table.blueTable thead th:first-child {
 	}
 
 	.description {
-		height: 20vh;
+		height: 18vh;
 	}
 
 }

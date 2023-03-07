@@ -74,7 +74,7 @@
 
 		<!-- FILTRO DE BUSQUEDA -->
 		<div class="container mt-3 p-1" id="div-formulario">
-				<form class="d-md-flex justify-content-lg-around justify-content-md-around">
+				<form class="d-md-flex flex-wrap justify-content-lg-around justify-content-md-around">
 
 						<div class="d-inline-block categories" id="checkboxes">
 							<!-- CHECKBOXES PARA APLICAR FILTROS POR CATEGORÍA -->
@@ -105,7 +105,7 @@
 
 
 						<!-- INPUT PARA ESCRIBIR -->
-						<div class="d-flex">
+						<div class="d-flex div-search">
 								<input class="form-control search-input" id="search" type="search" placeholder="Search" aria-label="Search">
 								<button type="submit" class="btn" id="lupita"><i class="fa fa-search fa-lg"></i></button>
 						</div>
@@ -185,8 +185,8 @@
 	</main>
 
 	<!-- PIE DE PAGINA -->
-	<footer class="footer fixed-bottom d-flex justify-content-around bg-light border-danger">
-
+	<footer class="footer fixed-bottom d-flex flex-wrap justify-content-around bg-light border-danger">
+			<div class="d-flex">
 				<ul id="ul_iconos" class="d-flex list-unstyled mt-1 mb-0">
 					<li>
 							<a class="btn btn-outline-danger btn-floating rounded-circle mx-1 mx-lg-3" href="#" role="button">
@@ -204,8 +204,11 @@
 							</a>
 					</li>
 				</ul>
+			</div>
 
-			<span id="cohort-msg" class="text-muted">Cohort FE03-TT</span>
+			<div class="d-flex">
+				<span id="cohort-msg" class="text-muted">Cohorte FE03-TT</span>
+			</div>
 
 	</footer>
 

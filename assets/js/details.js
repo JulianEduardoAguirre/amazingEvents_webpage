@@ -18,7 +18,7 @@ let detailsContent = `
 		<img
 			src="${eventoSolo.image}}"
 			alt="${eventoSolo.name}"
-			class="img-fluid">
+			class="img-fluid details-image">
 		<h4 class="card-category mt-2 text-center">${eventoSolo.category}</h4>
 	</div>
 	<div class="col-6 card-right">
