@@ -1,19 +1,19 @@
 
-// Asignación del tipo de botón "view details" según date de la tarjeta 
-let buttonClassSelector = (fecha1, fecha2) => {
-	let btnClass = '"btn btn-outline-secondary"'
-	if (fecha1 < fecha2){
-		btnClass = '"btn btn-outline-info"'
-	}
+// // Asignación del tipo de botón "view details" según date de la tarjeta 
+// let buttonClassSelector = (fecha1, fecha2) => {
+// 	let btnClass = '"btn btn-outline-secondary"'
+// 	if (fecha1 < fecha2){
+// 		btnClass = '"btn btn-outline-info"'
+// 	}
 	
-	return btnClass;
-}
+// 	return btnClass;
+// }
 
-const buttonClassSelector2 = (fecha1, fecha2) => {return fecha1<=fecha2 ? '"btn btn-outline-info"' : '"btn btn-outline-secondary"' }
+// const buttonClassSelector2 = (fecha1, fecha2) => {return fecha1<=fecha2 ? '"btn btn-outline-info"' : '"btn btn-outline-secondary"' }
 
 
 
-// SET con las categorías encontradas en la información de los eventos
+// SET OBJECT WITH THE CATEGORIES
 const categorySetGenerator = (data) => {
 	let categoriesSet = new Set();
 	data.events.forEach( evento => categoriesSet.add(evento.category) )
@@ -21,8 +21,7 @@ const categorySetGenerator = (data) => {
 }
 
 
-
-// FUNCION PARA GENERAR LOS CHECKBOXES
+// CHECKBOX SQUARES GENERATOR
 const checkBoxGenerator = (data) => {
 
 	categoriesSet = categorySetGenerator(data);
@@ -44,7 +43,7 @@ const checkBoxGenerator = (data) => {
 
 
 
-// NUEVAS FUNCIONES 03/03/23
+// GO TO DETAILS
 function viewDetails(card_id) {
 	window.location.href = `./details.html?id=${card_id}`
 }
@@ -52,13 +51,9 @@ function viewDetails(card_id) {
 
 
 
-// Solo realizo una tarjeta, que puedo concatenar con las demás
-// Args: evento (objeto con los datos del evento)
-// 			clase_boton (clase BS5 en base a la fecha del evento, uso la funcion buttonClassSelector)
-function generar_tarjeta(evento, clase_boton){
-	// console.log("Dentro del generador de tarjetas")
-	// console.log(evento.id)
-	// console.log(evento._id)
+// ONE CARD GENERATOR
+function generar_tarjeta(evento, dateRef){
+
 	return `<div class="col-xs-10 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-3 mb-4 d-flex justify-content-center">
 	<div class="card h-100">
 		<img src="${evento.image}" class="card-img-top" alt="${evento.name} image">
@@ -72,7 +67,7 @@ function generar_tarjeta(evento, clase_boton){
 		<p class="card-text mb-2">${evento.description}</p>
 		</div>
 		<div class="card-footer">
-			<btn onclick="viewDetails(${evento._id})" class=${clase_boton}>View Details</btn>
+			<btn onclick="viewDetails(${evento._id})" class=${dateRef >= evento.date ? '"btn btn-outline-secondary"':'"btn btn-outline-info"'} >View Details</btn>
 		</div>
 	</div>
 </div>
@@ -80,14 +75,14 @@ function generar_tarjeta(evento, clase_boton){
 }
 
 
-// FUNCION FINAL PARA GENERAR TARJETAS EN FORMA DINAMICA
+// ALL-CARDS GENERATOR FUNCTION
 function generar_tarjetas2(eventos, fechaRef){
 
 	let html_tarjetas = `<div class="row mt-5 justify-content-around mb-5">`
 
 	if (eventos.length != 0){
 		eventos.forEach((evento) => {
-			html_tarjetas += generar_tarjeta(evento, buttonClassSelector2(fechaRef, evento.date))
+			html_tarjetas += generar_tarjeta(evento, data.currentDate)
 		})
 	} else {
 		html_tarjetas += `<h1 class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</h1>`

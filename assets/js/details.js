@@ -15,12 +15,12 @@ while(details_container.firstChild) {
 					details_container.removeChild(details_container.firstChild);
 			}
 
-// console.log(details_container)
-// console.log(eventoSolo)
+// let assintanceOrEstimated = data.currentDate <= eventoSolo.date ? "Assistance: ".concat(`${eventoSolo.assistance}`):"Estimated: ".concat(`${eventoSolo.estimate}`);
+// let assintanceOrEstimated = data.currentDate <= eventoSolo.date ? "Estimated: ".concat(`${eventoSolo.estimate}`):"Assistance: ".concat(`${eventoSolo.assistance}`);
+let assintanceOrEstimated = eventoSolo.hasOwnProperty("assistance") ? "Estimated: ".concat(`${eventoSolo.assistance}`):"Assistance: ".concat(`${eventoSolo.estimate}`);
+// console.log(assintanceOrEstimated)
 
-// div_tarjetas.innerHTML = generar_tarjetas2(eventosFiltrados, data.currentDate);
-
-let algo = `
+let detailsContent = `
 <div class="card-details-all p-3">
 <div class="row g-0">
 	<div class="col-6 card-left d-flex flex-column align-items-center justify-content-center">
@@ -50,11 +50,11 @@ let algo = `
 				Capacity: ${eventoSolo.capacity}
 			</p>
 			<p class="card-text mb-2 ms-2 ms-md-4">
-				Confirmed: ${eventoSolo.assistance}
+				${assintanceOrEstimated}
 			</p>
 		</div>
 	</div>
 </div>
 </div>`
 
-details_container.innerHTML = algo
+details_container.innerHTML = detailsContent
