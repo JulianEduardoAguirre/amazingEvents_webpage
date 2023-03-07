@@ -52,7 +52,7 @@ function viewDetails(card_id) {
 
 
 // ONE CARD GENERATOR
-function generar_tarjeta(evento, dateRef){
+function generar_tarjeta(evento, refDate){
 
 	return `<div class="col-xs-10 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-3 mb-4 d-flex justify-content-center">
 	<div class="card h-100">
@@ -67,7 +67,7 @@ function generar_tarjeta(evento, dateRef){
 		<p class="card-text mb-2">${evento.description}</p>
 		</div>
 		<div class="card-footer">
-			<btn onclick="viewDetails(${evento._id})" class=${dateRef >= evento.date ? '"btn btn-outline-secondary"':'"btn btn-outline-info"'} >View Details</btn>
+			<btn onclick="viewDetails(${evento._id})" class=${refDate >= evento.date ? '"btn btn-outline-secondary"':'"btn btn-outline-info"'} >View Details</btn>
 		</div>
 	</div>
 </div>
@@ -82,7 +82,7 @@ function generar_tarjetas2(eventos, fechaRef){
 
 	if (eventos.length != 0){
 		eventos.forEach((evento) => {
-			html_tarjetas += generar_tarjeta(evento, data.currentDate)
+			html_tarjetas += generar_tarjeta(evento, fechaRef)
 		})
 	} else {
 		html_tarjetas += `<h1 class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</h1>`
@@ -91,7 +91,27 @@ function generar_tarjetas2(eventos, fechaRef){
 	return html_tarjetas + `</div>`
 }
 
+function filterContent() {
+	// Checkboxes (only selected)
+	let categoriesFound = [];
+	document.querySelectorAll(".form-check-input").forEach( e => {if(e.checked == true) categoriesFound.push(e.value)})
 
+	// Input search current value
+	let searchWord = document.getElementById("search").value.toLowerCase();
+	
+	let filteredEvents = data.events		//Initially, got all events
+
+	// data object filter section
+	if ( categoriesFound.length != 0){
+		filteredEvents = data.events.filter( evento => categoriesFound.includes(evento.category))
+	}
+
+	if (searchWord != ""){
+		filteredEvents = filteredEvents.filter( evento => evento.name.toLowerCase().includes(searchWord))
+	}
+
+	div_tarjetas.innerHTML = generar_tarjetas2(filteredEvents, data.currentDate);
+}
 
 
 
