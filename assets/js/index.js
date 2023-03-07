@@ -29,31 +29,33 @@ div_checkboxes.innerHTML = checkBoxGenerator(data);
 let listaCheckboxes = filtroCheckboxes()
 
 
-
-
-
-
-//SECCION DE FILTRADO USANDO LA BARRA DE BÚSQUEDA Y CHECKBOXES
 const inputSearch = document.getElementById("search")
-inputSearch.addEventListener("input", () => {
-	let eventosFiltrados = data.events.filter((evento) => evento.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
-	// let misEventos = filtroCheckboxes();
-	// console.log(misEventos)
-	// let eventosFiltrados = data.events.filter((evento) => evento.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
-	// let eventosFiltrados = misEventos.filter((evento) => evento.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
+inputSearch.addEventListener("input", megaFiltro)
+const otrosCheckboxes = document.querySelectorAll(".form-check-input")
+for (const checkbox of otrosCheckboxes) {
+	checkbox.addEventListener("click", megaFiltro)
+}
 
+
+
+// OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
+//SECCION DE FILTRADO USANDO LA BARRA DE BÚSQUEDA Y CHECKBOXES
+// const inputSearch = document.getElementById("search")
+// inputSearch.addEventListener("input", () => {
+	// let eventosFiltrados = data.events.filter((evento) => evento.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
 
 	// Contenedor de tarjetas
-	const div_tarjetas = document.getElementById("cartas");
+	// const div_tarjetas = document.getElementById("cartas");
 	//Si tiene contenido, lo elimino primero
-	while(div_tarjetas.firstChild) {
-						div_tarjetas.removeChild(div_tarjetas.firstChild);
-				}
+	// while(div_tarjetas.firstChild) {
+						// div_tarjetas.removeChild(div_tarjetas.firstChild);
+				// }
 
-	div_tarjetas.innerHTML = generar_tarjetas2(eventosFiltrados, data.currentDate);
+	// div_tarjetas.innerHTML = generar_tarjetas2(eventosFiltrados, data.currentDate);
 
 
-})
+// })
+// OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKO
 
 
 //PRUEBAS PARA LOS CHECHBOXES
@@ -79,7 +81,7 @@ function filtroCheckboxes() {
 				eventosBase = data.events.filter((evento) => evento.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
 			}
 
-			console.log(eventosBase)
+			// console.log(eventosBase)
 
 			if(this.checked == true) {
 				// listArray1.push(checkbox.getAttribute("value"));
@@ -122,26 +124,62 @@ function filtroCheckboxes() {
 
 }
 
-// function aVer(listaDeFiltrado) {
-// 	const checkboxes = document.querySelectorAll(".form-check-input")
-// 	for (let checkbox of checkboxes){
-// 		checkbox.addEventListener("click", function() {
-// 			if (listArray1.length != 0){
-// 				data.events.forEach(element => {
-// 					if(listArray1.includes(element.category)){
-// 						eventosFiltradosPorCategoria.push(element)
-// 					}
-// 				});
-				
-// 			} else {
-// 				return data.events
-// 			}
-// 		})
-// 	}
 
-// }
 
-// let listaCheckboxes = filtroCheckboxes()
+
+
+// PRUEBAS DE AHORA
+const searchBoxesContent = document.querySelectorAll(".form-check-input")
+const inputContent = document.getElementById("search")
+
+// let categoriesFound = [];
+let searchWord = "";
+
+function megaFiltro() {
+	// Checkboxes
+	let categoriesFound = [];
+	document.querySelectorAll(".form-check-input").forEach( e => {if(e.checked == true) categoriesFound.push(e.value)})
+	searchWord = document.getElementById("search").value.toLowerCase();
+	
+	// console.log(categoriesFound)
+	// console.log(searchWord)
+
+	let filteredEvents = []
+
+	// SECCION DE FILTRADO DEL OBJETO DATA
+	if ( categoriesFound.length != 0){
+		filteredEvents = data.events.filter( evento => categoriesFound.includes(evento.category))
+		// console.log("TENGO MÄS DE 0 CATEGORIAS")
+		// console.log("----------------------------------")
+		// console.log(filteredEvents)
+		// console.log("----------------------------------")
+	}
+	//  else {
+	// 	console.log("Estoy vacío")
+	// }
+
+	if (searchWord != ""){
+		filteredEvents = filteredEvents.filter( evento => evento.name.toLowerCase().includes(searchWord))
+		// console.log("************************************")
+		// console.log(filteredEvents)
+		// console.log("************************************")
+	}
+	//  else {
+	// 	console.log("El input está vacío")
+	// }
+
+	// HASTA AQUI PERFECTO: TENGO LOS EVENTOS FILTRADOS
+
+
+	console.log(`Hasta aquí, tenemos esta cantidad de eventos: ${filteredEvents.length}`)
+
+
+}
+
+// megaFiltro()
+// FIN DE PRUEBAS DE AHORA
+
+
 
 
 
