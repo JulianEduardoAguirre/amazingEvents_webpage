@@ -37,7 +37,7 @@ function viewDetails(card_id) {
 // ONE CARD GENERATOR
 function generar_tarjeta(evento, refDate){
 
-	return `<div class="col-xs-10 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-3 mb-4 d-flex justify-content-center">
+	return `<div class="mb-4 d-flex justify-content-center">
 	<div class="card h-100">
 		<img src="${evento.image}" class="card-img-top" alt="${evento.name} image">
 		<div class="card-body">
@@ -47,10 +47,10 @@ function generar_tarjeta(evento, refDate){
 			<p class="card-price d-inline mb-0"><strong>$${evento.price}</strong></p>
 		</div>
 		<hr class="mb-2 mt-2">
-		<p class="card-text mb-2">${evento.description}</p>
+			<p class="card-text mb-2">${evento.description}</p>
 		</div>
 		<div class="card-footer">
-			<btn onclick="viewDetails(${evento._id})" class=${refDate >= evento.date ? '"btn btn-outline-secondary"':'"btn btn-outline-info"'} >View Details</btn>
+		<btn onclick="viewDetails(${evento._id})" class=${refDate >= evento.date ? '"btn btn-outline-secondary"':'"btn btn-outline-info"'} >View Details</btn>
 		</div>
 	</div>
 </div>
@@ -61,7 +61,8 @@ function generar_tarjeta(evento, refDate){
 // ALL-CARDS GENERATOR FUNCTION
 function generar_tarjetas2(eventos, fechaRef){
 
-	let html_tarjetas = `<div class="row mt-5 justify-content-around mb-5">`
+	// let html_tarjetas = `<div class="row mt-5 justify-content-around mb-5">`
+	let html_tarjetas = `<div class="d-flex flex-wrap my-5 justify-content-around">`
 
 	if (eventos.length != 0){
 		eventos.forEach((evento) => {
