@@ -61,7 +61,6 @@ function generar_tarjeta(evento, refDate){
 // ALL-CARDS GENERATOR FUNCTION
 function generar_tarjetas2(eventos, fechaRef){
 
-	// let html_tarjetas = `<div class="row mt-5 justify-content-around mb-5">`
 	let html_tarjetas = `<div class="d-flex flex-wrap my-5 justify-content-around">`
 
 	if (eventos.length != 0){
