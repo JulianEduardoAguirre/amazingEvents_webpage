@@ -12,7 +12,7 @@ const checkBoxGenerator = (events) => {
 
 	categoriesSet = categorySetGenerator(events);
 
-	let checkBoxHTML = `<div class="container d-sm-flex my-1 gap-2">`;
+	let checkBoxHTML = `<div class="d-flex flex-wrap d-sm-flex my-1 gap-2">`;
 
 	categoriesSet.forEach(categoria => 
 		{ checkBoxHTML += `	<div class="form-check ms-2">

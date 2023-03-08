@@ -137,14 +137,6 @@ main {
 	z-index: 10;
 }
 
-@media (max-width: 1024px){
-	.div-search {
-		width: 95%;
-		margin: 0 auto;
-	}
-	
-}
-
 
 input[type="checkbox"]:checked {
   background: crimson;
