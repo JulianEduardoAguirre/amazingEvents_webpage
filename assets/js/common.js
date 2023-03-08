@@ -37,7 +37,7 @@ function viewDetails(card_id) {
 // ONE CARD GENERATOR
 function generar_tarjeta(evento, refDate){
 
-	return `<div class="mb-4 d-flex justify-content-center">
+	return `<div class="mb-4 d-flex justify-content-center" onclick="viewDetails(${evento._id})">
 	<div class="card h-100">
 		<img src="${evento.image}" class="card-img-top" alt="${evento.name} image">
 		<div class="card-body">
@@ -68,7 +68,7 @@ function generar_tarjetas2(eventos, fechaRef){
 			html_tarjetas += generar_tarjeta(evento, fechaRef)
 		})
 	} else {
-		html_tarjetas += `<h1 class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</h1>`
+		html_tarjetas += `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</p><p class="text-center" style="color:white;font-size:2rem;">Try adjusting your search parameters</p></div>`
 	}
 
 	return html_tarjetas + `</div>`

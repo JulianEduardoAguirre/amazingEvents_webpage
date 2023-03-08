@@ -13,13 +13,13 @@ let assintanceOrEstimated = eventoSolo.hasOwnProperty("assistance") ? "Estimated
 // CONTENT TEMPLATE STRING
 let detailsContent = `
 <div class="card-details-all p-3">
-<div class="row g-0">
+<div class="d-flex g-0">
 	<div class="col-6 card-left d-flex flex-column align-items-center justify-content-center">
 		<img
 			src="${eventoSolo.image}}"
 			alt="${eventoSolo.name}"
 			class="img-fluid details-image">
-		<h4 class="card-category mt-2 text-center">${eventoSolo.category}</h4>
+		<h4 class="card-category mt-2 text-center text-decoration-underline">${eventoSolo.category}</h4>
 	</div>
 	<div class="col-6 card-right">
 		<div class="card-details-body">

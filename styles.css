@@ -342,6 +342,8 @@ table.blueTable thead th:first-child {
 
 .card-details-all {
 	height: 60vh;
+	min-height: 410px;
+
 }
 
 .description {
