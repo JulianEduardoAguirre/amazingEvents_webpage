@@ -240,7 +240,7 @@ input[type="checkbox"]:checked {
 
 /* FOOTER*/
 footer {
-
+	position: relative;
 }
 
 .card-footer .btn {
@@ -255,7 +255,20 @@ footer {
 	max-width: 100vw;
 }
 
+#div-msg {
+	display: none;
+}
 
+@media only screen and (max-width: 395px){
+	footer {
+		display: flex;
+		justify-content: center;
+	}
+	
+	#cohort-msg {
+		display: none;
+	}
+}
 
 
 /* ************* CONTACT PAGE *************** */
