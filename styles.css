@@ -126,6 +126,9 @@ main {
 	}
 }
 
+.prueba {
+	color: white;
+}
 
 
 #div-formulario label {
@@ -133,6 +136,7 @@ main {
 	font-weight: 600;
 	z-index: 10;
 }
+
 
 input[type="checkbox"]:checked {
   background: crimson;
@@ -148,11 +152,11 @@ input[type="checkbox"]:checked {
 
 /* CARD*/
 .card {
-	border-radius: 40px;
+	border-radius: 35px;
 	min-width: 300px;
 	max-width: 300px;
-	min-height: 375px;
-	max-height: 425px;
+	min-height: 420px;
+	max-height: 420px;
 	backdrop-filter: blur(2px) saturate(0%);
 	background-color: rgba(237, 235, 240, 0.2);
 	backdrop-filter: blur(16px) saturate(180%);
@@ -181,9 +185,10 @@ input[type="checkbox"]:checked {
 	-webkit-backdrop-filter: blur(16px) saturate(180%);
 	background-color: rgba(17, 25, 40, 0.75);
 	border: 1px solid rgba(255, 255, 255, 0.125);
+	min-width: 280px;
 	max-width: 280px;
-	min-height: 220px;
-	max-height: 210px;
+	min-height: 235px;
+	max-height: 235px;
 	border-bottom-left-radius: 25px;
 	border-bottom-right-radius: 25px;
 	text-overflow: ellipsis;
@@ -227,11 +232,19 @@ input[type="checkbox"]:checked {
 	color: white;
 }
 
+.card-footer {
+	margin-top: -30px;
+	z-index: 1000;
+}
 
 
 /* FOOTER*/
 footer {
-	border-top: 1px solid red;
+	position: relative;
+}
+
+.card-footer .btn {
+	border-radius: 5px;
 }
 
 #cohort-msg {
@@ -242,7 +255,20 @@ footer {
 	max-width: 100vw;
 }
 
+#div-msg {
+	display: none;
+}
 
+@media only screen and (max-width: 395px){
+	footer {
+		display: flex;
+		justify-content: center;
+	}
+	
+	#cohort-msg {
+		display: none;
+	}
+}
 
 
 /* ************* CONTACT PAGE *************** */
@@ -316,6 +342,8 @@ table.blueTable thead th:first-child {
 
 .card-details-all {
 	height: 60vh;
+	min-height: 410px;
+
 }
 
 .description {
@@ -337,7 +365,9 @@ table.blueTable thead th:first-child {
 	color: whitesmoke;
 }
 
-.img-fluid {
+.details-image {
+	max-height: 75%;
+	width: 90%;
 	border: 5px solid #f1eee6;
 	border-radius: 0 !important;
 }
@@ -362,7 +392,7 @@ table.blueTable thead th:first-child {
 	}
 
 	.description {
-		height: 20vh;
+		height: 18vh;
 	}
 
 }
