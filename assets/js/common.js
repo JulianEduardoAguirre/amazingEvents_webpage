@@ -111,3 +111,55 @@ function filterByDate() {
 
 	return eventsFilteredByDate;
 }
+
+
+function generateStats() {
+	// console.log(data)
+	// console.log(data.currentDate)
+	// console.log(data.events)
+	// console.log(data.events.length)
+
+	let capacidades = []
+
+	data.events.forEach(event => capacidades.push(event.capacity))
+	console.log(capacidades)
+	console.log(Math.max(...capacidades))
+
+	//Mayor capacidad
+	let mayorCapacidad = data.events.filter( event => event.capacity == Math.max(...capacidades))
+	console.log(mayorCapacidad[0].name)
+
+	let percentages = []
+	data.events.forEach(event => percentages.push({
+		_id: event._id,
+		name: event.name,
+		capacity: event.capacity,
+		attendance: event.hasOwnProperty("assistance") ? event.assistance : event.estimate,
+		percentage: (event.hasOwnProperty("assistance") ? event.assistance : event.estimate) / event.capacity * 100
+	})) 
+
+	console.log(percentages)
+
+	let maximumPerc = Math.max.apply(Math, percentages.map(event => event.percentage));
+	console.log(maximumPerc)
+
+	let arrayMaximunAtt = percentages.filter(event => event.percentage == maximumPerc)
+	console.log(arrayMaximunAtt)
+
+	let minimumPerc = Math.min.apply(Math, percentages.map(event => event.percentage));
+	console.log(minimumPerc)
+
+	let arrayMinimunAtt = percentages.filter(event => event.percentage == minimumPerc)
+	console.log(arrayMinimunAtt)
+
+	let categoriesSet = new Set()
+	data.events.forEach(event => categoriesSet.add(event.category))
+	console.log(categoriesSet) 
+
+
+	let categoriesArray
+
+
+}
+
+generateStats();
