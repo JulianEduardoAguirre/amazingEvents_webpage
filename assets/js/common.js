@@ -122,12 +122,12 @@ function generateStats() {
 	let capacidades = []
 
 	data.events.forEach(event => capacidades.push(event.capacity))
-	console.log(capacidades)
-	console.log(Math.max(...capacidades))
+	// console.log(capacidades)
+	// console.log(Math.max(...capacidades))
 
 	//Mayor capacidad
 	let mayorCapacidad = data.events.filter( event => event.capacity == Math.max(...capacidades))
-	console.log(mayorCapacidad[0].name)
+	// console.log(mayorCapacidad[0].name)
 
 	let percentages = []
 	data.events.forEach(event => percentages.push({
@@ -138,28 +138,130 @@ function generateStats() {
 		percentage: (event.hasOwnProperty("assistance") ? event.assistance : event.estimate) / event.capacity * 100
 	})) 
 
-	console.log(percentages)
+	// console.log(percentages)
 
 	let maximumPerc = Math.max.apply(Math, percentages.map(event => event.percentage));
-	console.log(maximumPerc)
+	// console.log(maximumPerc)
 
 	let arrayMaximunAtt = percentages.filter(event => event.percentage == maximumPerc)
-	console.log(arrayMaximunAtt)
+	// console.log(arrayMaximunAtt)
 
 	let minimumPerc = Math.min.apply(Math, percentages.map(event => event.percentage));
-	console.log(minimumPerc)
+	// console.log(minimumPerc)
 
 	let arrayMinimunAtt = percentages.filter(event => event.percentage == minimumPerc)
-	console.log(arrayMinimunAtt)
+	// console.log(arrayMinimunAtt)
 
 	let categoriesSet = new Set()
 	data.events.forEach(event => categoriesSet.add(event.category))
-	console.log(categoriesSet) 
+	// console.log(categoriesSet) 
+	// console.log(categoriesSet[0])
+	let categoriesArray = [...categoriesSet]
+	// console.log(categoriesArray)
 
 
-	let categoriesArray
 
+	let generateCategoryStats = (categoryName, eventsArray) => {
+		// console.log(categoryName)
+		let datos = {
+			category: categoryName,
+			attendanceTotal: 0,
+			capacityTotal: 0,
+			revenue: 0,
+		}
+		eventsArray.filter( event => {if(event.category == categoryName) {
+			datos.attendanceTotal += event.hasOwnProperty("assistance") ? event.assistance : event.estimate;
+			datos.capacityTotal += event.capacity
+			datos.revenue += (event.price * (event.hasOwnProperty("assistance") ? event.assistance : event.estimate) )
+		}})
+
+		return datos;
+	}
+
+	// console.log(generateCategoryStats(categoriesArray[1], data.events))
+
+	let upcomingEventsStats = []
+	categoriesArray.forEach( catName => upcomingEventsStats.push(generateCategoryStats(catName, data.events.filter(event => data.currentDate >= event.date))) )
+
+	let pastEventsStats = []
+	categoriesArray.forEach( catName => pastEventsStats.push(generateCategoryStats(catName, data.events.filter(event => data.currentDate < event.date))) )
+
+	// console.log(upcomingEventsStats)
+	// console.log(pastEventsStats)
+
+
+	let todo = {
+		maxCap: mayorCapacidad[0].name,
+		maxPerc: arrayMaximunAtt[0].name,
+		minPerc: arrayMinimunAtt[0].name,
+		upcoming: upcomingEventsStats,
+		past: pastEventsStats
+	}
+
+	return todo;
 
 }
 
-generateStats();
+
+// generateStats();
+let urlApi = ""
+let urlPokeApi = "https://pokeapi.co/api/v2/pokemon/ditto"
+let dataDir = "./assets/amazing_1.json"
+
+var algo = {}
+
+async function retrieveData() {
+	try{
+		// const response = await fetch(dataDir);
+		const response = await fetch(dataDir);
+		// console.log(response)
+
+		const retrievedData = await response.json();
+		// console.log(retrievedData)
+
+		return retrievedData;
+
+	} catch (error) {
+		console.error(error);
+	}
+
+}
+
+let my_data = {}
+var currentUno = ""
+let currentEvs = []
+
+const ultima = function () {
+	let a;
+	let b;
+	fetch(dataDir)
+	.then(response => response.json())
+	.then( datos => {
+		// console.log(datos)
+		// console.log(typeof(datos))
+		// console.log(datos.currentDate)
+		// console.log(datos.events)
+
+		a = datos.currentDate
+		b = datos.events
+
+		return {a, b}
+
+		// my_data.currentDate = datos.currentDate;
+		// currentUno = datos.currentDate;
+		// my_data.events = datos.events;
+		// currentEvs = [...datos.events];
+		// console.log(my_data)
+		// return currentUno
+	})
+}
+
+
+
+
+console.log(ultima())
+// console.log(b)
+
+// console.log("-----------")
+// console.log(currentUno)
+// console.log(currentEvs)
