@@ -19,6 +19,11 @@ div_checkboxes.innerHTML = checkBoxGenerator(filterByDate());																//F
 
 
 
+
+
+
+
+
 //																												ADDING EVENT LISTENERS FOR FILTER SECTION
 
 const inputSearch = document.getElementById("search")

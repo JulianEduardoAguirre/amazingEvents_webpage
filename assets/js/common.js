@@ -112,25 +112,33 @@ function filterByDate() {
 	return eventsFilteredByDate;
 }
 
+function filterByDate2(my_object) {
+	let currentURL = window.location.href
+	let eventsFilteredByDate = my_object.events
+	if( currentURL.includes("upcoming")){
+		eventsFilteredByDate = my_object.events.filter( e => e.date >= my_object.currentDate)
+	} else if (currentURL.includes("past")){
+		eventsFilteredByDate = my_object.events.filter( e => e.date < my_object.currentDate)
+	}
 
-function generateStats() {
-	// console.log(data)
-	// console.log(data.currentDate)
-	// console.log(data.events)
-	// console.log(data.events.length)
+	return eventsFilteredByDate;
+}
 
-	let capacidades = []
 
-	data.events.forEach(event => capacidades.push(event.capacity))
-	// console.log(capacidades)
-	// console.log(Math.max(...capacidades))
+function generateStats(dataObject) {
 
-	//Mayor capacidad
-	let mayorCapacidad = data.events.filter( event => event.capacity == Math.max(...capacidades))
-	// console.log(mayorCapacidad[0].name)
+	// FOR MAJOR CAPACITY
+	let capacities = []
+	dataObject.events.forEach(event => capacities.push(event.capacity))
 
+	// higher capacity events
+	let mayorCapacidad = dataObject.events.filter( event => event.capacity == Math.max(...capacities))
+
+
+	// ATTENDANCE PERCENTAGES
 	let percentages = []
-	data.events.forEach(event => percentages.push({
+
+	dataObject.events.forEach(event => percentages.push({
 		_id: event._id,
 		name: event.name,
 		capacity: event.capacity,
@@ -138,129 +146,115 @@ function generateStats() {
 		percentage: (event.hasOwnProperty("assistance") ? event.assistance : event.estimate) / event.capacity * 100
 	})) 
 
-	// console.log(percentages)
 
-	let maximumPerc = Math.max.apply(Math, percentages.map(event => event.percentage));
-	// console.log(maximumPerc)
+	// let maximumPerc = Math.max.apply(Math, percentages.map(event => event.percentage));
+	// let arrayMaximunAtt = percentages.filter(event => event.percentage == maximumPerc)
+	let arrayMaximunAtt = percentages.filter(event => event.percentage == Math.max.apply(Math, percentages.map(event => event.percentage)))
 
-	let arrayMaximunAtt = percentages.filter(event => event.percentage == maximumPerc)
-	// console.log(arrayMaximunAtt)
+	// let minimumPerc = Math.min.apply(Math, percentages.map(event => event.percentage));
+	// let arrayMinimunAtt = percentages.filter(event => event.percentage == minimumPerc)
+	let arrayMinimunAtt = percentages.filter(event => event.percentage == Math.min.apply(Math, percentages.map(event => event.percentage)))
 
-	let minimumPerc = Math.min.apply(Math, percentages.map(event => event.percentage));
-	// console.log(minimumPerc)
+	let maxCapLenght = mayorCapacidad.length
+	let maxAttLenght = arrayMaximunAtt.length
+	let minAttLenght = arrayMinimunAtt.length
 
-	let arrayMinimunAtt = percentages.filter(event => event.percentage == minimumPerc)
-	// console.log(arrayMinimunAtt)
-
-	let categoriesSet = new Set()
-	data.events.forEach(event => categoriesSet.add(event.category))
-	// console.log(categoriesSet) 
-	// console.log(categoriesSet[0])
-	let categoriesArray = [...categoriesSet]
-	// console.log(categoriesArray)
+	let mayorLenght = Math.max(maxCapLenght, maxAttLenght, minAttLenght)
 
 
+	// STATS BY CATEGORY (FUTURE EVENTS AND PAST EVENTS)
 
-	let generateCategoryStats = (categoryName, eventsArray) => {
-		// console.log(categoryName)
-		let datos = {
-			category: categoryName,
-			attendanceTotal: 0,
-			capacityTotal: 0,
-			revenue: 0,
-		}
-		eventsArray.filter( event => {if(event.category == categoryName) {
-			datos.attendanceTotal += event.hasOwnProperty("assistance") ? event.assistance : event.estimate;
-			datos.capacityTotal += event.capacity
-			datos.revenue += (event.price * (event.hasOwnProperty("assistance") ? event.assistance : event.estimate) )
-		}})
+	// Need to store the categories for each time period (upcomind or past)
+	let upcomingCategories = catArrayGenerator(dataObject.events.filter( e => dataObject.currentDate >= e.date));
+	let pastCategories = catArrayGenerator(dataObject.events.filter( e => dataObject.currentDate < e.date));
 
-		return datos;
-	}
-
-	// console.log(generateCategoryStats(categoriesArray[1], data.events))
 
 	let upcomingEventsStats = []
-	categoriesArray.forEach( catName => upcomingEventsStats.push(generateCategoryStats(catName, data.events.filter(event => data.currentDate >= event.date))) )
+	upcomingCategories.forEach( catName => upcomingEventsStats.push(generateCategoryStats(catName, dataObject.events.filter(event => dataObject.currentDate >= event.date))) )
 
 	let pastEventsStats = []
-	categoriesArray.forEach( catName => pastEventsStats.push(generateCategoryStats(catName, data.events.filter(event => data.currentDate < event.date))) )
-
-	// console.log(upcomingEventsStats)
-	// console.log(pastEventsStats)
+	pastCategories.forEach( catName => pastEventsStats.push(generateCategoryStats(catName, dataObject.events.filter(event => dataObject.currentDate < event.date))) )
 
 
-	let todo = {
-		maxCap: mayorCapacidad[0].name,
-		maxPerc: arrayMaximunAtt[0].name,
-		minPerc: arrayMinimunAtt[0].name,
+	let allStats = {
+		cota: mayorLenght,
+		maxCap: arrayEqualizer(mayorLenght, mayorCapacidad),
+		maxPerc: arrayEqualizer(mayorLenght, arrayMaximunAtt),
+		minPerc: arrayEqualizer(mayorLenght, arrayMinimunAtt),
 		upcoming: upcomingEventsStats,
 		past: pastEventsStats
 	}
 
-	return todo;
+	// console.log(allStats)
+
+	return allStats;
 
 }
 
 
-// generateStats();
-let urlApi = ""
-let urlPokeApi = "https://pokeapi.co/api/v2/pokemon/ditto"
-let dataDir = "./assets/amazing_1.json"
+// Categories Array Generator
+let catArrayGenerator = (eventsArray) => {
+	let catSet = new Set();
+	eventsArray.forEach(event => catSet.add(event.category))
+	return [...catSet]
+}
 
-
-
-
-let retrieveData = async function() {
-	try{
-		const response = await fetch(dataDir);
-		// console.log(response)
-		const responseData = await response.json();
-		// console.log(responseData)
-		return responseData;
-
-	} catch (error) {
-		console.error(error);
+// Generic category stats generator
+let generateCategoryStats = (categoryName, eventsArray) => {
+	let datos = {
+		category: categoryName,
+		attendanceTotal: 0,
+		capacityTotal: 0,
+		revenue: 0,
 	}
+	eventsArray.filter( event => {if(event.category == categoryName) {
+		datos.attendanceTotal += event.hasOwnProperty("assistance") ? event.assistance : event.estimate;
+		datos.capacityTotal += event.capacity
+		datos.revenue += (event.price * (event.hasOwnProperty("assistance") ? event.assistance : event.estimate) )
+	}})
 
+	return datos;
+}
+
+
+// Generates a new array with it's original content and filling the rest of its values with an empty string
+let arrayEqualizer = function(cota, arrToEq) {
+	let arrRtn = []
+	for (let index = 0; index < cota; index++) {
+		if (arrToEq[index] === undefined){
+			arrRtn.push("")
+		} else {
+			arrRtn.push(arrToEq[index])
+		}
+		
+	}
+	return arrRtn;	
 }
 
 
 
-var retrData = {}
 
-retrieveData().then( resp => {
-	retrData.currentDate = resp.currentDate;
-	retrData.events = resp.events;
-})
 
-console.log("MIS DATOS")
-a = retrData.currentDate
-console.log(a)
+// let urlApi = ""
+// let urlPokeApi = "https://pokeapi.co/api/v2/pokemon/ditto"
+// let dataDir = "./assets/amazing_1.json"
 
 
 
 
-
-
-
-
-// var otraVariable = {}
-
-// let retrieveData2 = async function() {
+// let retrieveData = async function() {
 // 	try{
-// 		fetch(dataDir)
-// 		.then(response => response.json())
-// 		// .then(data => console.log(data));
-// 		.then(data3 => otraVariable.a = data3		 )
-// 		}
+// 		const response = await fetch(dataDir);
+// 		const responseData = await response.json();
+// 		return responseData;
 
-// 	catch (error) {
+// 	} catch (error) {
 // 		console.error(error);
 // 	}
 
 // }
 
-// retrieveData2();
-// console.log("OTRA VARIABLE")
-// console.log(otraVariable)
+
+
+// var retrData = {}
+
