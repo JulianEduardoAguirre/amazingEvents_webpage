@@ -80,7 +80,6 @@ let asyncStats = async function(){
 
 	})
 
-
 }
 
 asyncStats();
