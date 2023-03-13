@@ -1,6 +1,7 @@
 
 let asyncStats = async function(){
-	const response = await fetch("./assets/amazing_1.json");
+	const response = await fetch(apiUrl);
+	// const response = await fetch(localData);													//Discomment this line and comment the previous one if data is not being shown
 	const dataRetr = await response.json().then( datos1 => {
 
 

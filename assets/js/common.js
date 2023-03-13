@@ -1,4 +1,12 @@
 
+
+// DATA SOURCES
+let apiUrl = "https://mindhub-xj03.onrender.com/api/amazing"
+let localData = "./assets/amazing_1.json";
+
+
+
+
 // SET WITH THE CATEGORIES
 const categorySetGenerator = (allEvents) => {
 	let categoriesSet = new Set();
@@ -111,6 +119,8 @@ function filterByDate() {
 
 	return eventsFilteredByDate;
 }
+
+
 
 function filterByDate2(my_object) {
 	let currentURL = window.location.href
