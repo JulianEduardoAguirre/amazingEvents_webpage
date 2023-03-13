@@ -312,6 +312,11 @@ table.blueTable td, table.blueTable th {
 
 table.blueTable tbody td {
   font-size: 16px;
+	padding-left: 10px
+}
+
+td .italic {
+	padding-left: 0px;
 }
 
 table.blueTable tr:nth-child(even) {

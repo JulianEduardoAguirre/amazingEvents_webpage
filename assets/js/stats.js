@@ -40,8 +40,8 @@ let tableUpcomingString = `					<tr>
 datos.upcoming.forEach( element => tableUpcomingString += `
 <tr>
 	<td>${element.category}</td>
-	<td>${element.revenue}</td>
-	<td>${element.attendanceTotal / element.capacityTotal}</td>
+	<td>$${element.revenue}</td>
+	<td>${(element.attendanceTotal / element.capacityTotal).toFixed(2) * 100}%</td>
 </tr>
 `)
 
@@ -58,8 +58,8 @@ let tablePastString = `					<tr>
 datos.past.forEach( element => tablePastString += `
 <tr>
 	<td>${element.category}</td>
-	<td>${element.revenue}</td>
-	<td>${element.attendanceTotal / element.capacityTotal}</td>
+	<td>$${element.revenue}</td>
+	<td>${(element.attendanceTotal / element.capacityTotal).toFixed(2) * 100}%</td>
 </tr>
 `)
 

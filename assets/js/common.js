@@ -208,18 +208,16 @@ let urlApi = ""
 let urlPokeApi = "https://pokeapi.co/api/v2/pokemon/ditto"
 let dataDir = "./assets/amazing_1.json"
 
-var algo = {}
 
-async function retrieveData() {
+
+
+let retrieveData = async function() {
 	try{
-		// const response = await fetch(dataDir);
 		const response = await fetch(dataDir);
 		// console.log(response)
-
-		const retrievedData = await response.json();
-		// console.log(retrievedData)
-
-		return retrievedData;
+		const responseData = await response.json();
+		// console.log(responseData)
+		return responseData;
 
 	} catch (error) {
 		console.error(error);
@@ -227,41 +225,42 @@ async function retrieveData() {
 
 }
 
-let my_data = {}
-var currentUno = ""
-let currentEvs = []
 
-const ultima = function () {
-	let a;
-	let b;
-	fetch(dataDir)
-	.then(response => response.json())
-	.then( datos => {
-		// console.log(datos)
-		// console.log(typeof(datos))
-		// console.log(datos.currentDate)
-		// console.log(datos.events)
 
-		a = datos.currentDate
-		b = datos.events
+var retrData = {}
 
-		return {a, b}
+retrieveData().then( resp => {
+	retrData.currentDate = resp.currentDate;
+	retrData.events = resp.events;
+})
 
-		// my_data.currentDate = datos.currentDate;
-		// currentUno = datos.currentDate;
-		// my_data.events = datos.events;
-		// currentEvs = [...datos.events];
-		// console.log(my_data)
-		// return currentUno
-	})
-}
+console.log("MIS DATOS")
+a = retrData.currentDate
+console.log(a)
 
 
 
 
-console.log(ultima())
-// console.log(b)
 
-// console.log("-----------")
-// console.log(currentUno)
-// console.log(currentEvs)
+
+
+
+// var otraVariable = {}
+
+// let retrieveData2 = async function() {
+// 	try{
+// 		fetch(dataDir)
+// 		.then(response => response.json())
+// 		// .then(data => console.log(data));
+// 		.then(data3 => otraVariable.a = data3		 )
+// 		}
+
+// 	catch (error) {
+// 		console.error(error);
+// 	}
+
+// }
+
+// retrieveData2();
+// console.log("OTRA VARIABLE")
+// console.log(otraVariable)
