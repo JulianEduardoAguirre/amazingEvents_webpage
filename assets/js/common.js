@@ -1,17 +1,14 @@
-
-
 // DATA SOURCES
 let apiUrl = "https://mindhub-xj03.onrender.com/api/amazing"
 let localData = "./assets/amazing_1.json";
-
-
 
 
 // SET WITH THE CATEGORIES
 const categorySetGenerator = (allEvents) => {
 	let categoriesSet = new Set();
 	allEvents.forEach( evento => categoriesSet.add(evento.category) )
-	return categoriesSet;
+	// return [...categoriesSet];																												// Return as an Array
+	return categoriesSet;																																// Return as Set
 }
 
 
@@ -31,7 +28,6 @@ const checkBoxGenerator = (events) => {
 		});
 
 	checkBoxHTML += "</div>"
-
 	return checkBoxHTML;
 }
 
@@ -42,8 +38,8 @@ function viewDetails(card_id) {
 }
 
 
-// ONE CARD GENERATOR
-function generar_tarjeta(evento, refDate){
+// SIMGLE CARD GENERATOR
+function generate_card(evento, refDate){
 
 	return `<div class="mb-4 d-flex justify-content-center" onclick="viewDetails(${evento._id})">
 	<div class="card h-100">
@@ -67,19 +63,19 @@ function generar_tarjeta(evento, refDate){
 
 
 // ALL-CARDS GENERATOR FUNCTION
-function generar_tarjetas2(eventos, fechaRef){
+function generar_tarjetas2(events, refDate){
 
-	let html_tarjetas = `<div class="d-flex flex-wrap my-5 justify-content-around">`
+	let cardsHTML = `<div class="d-flex flex-wrap my-5 justify-content-around">`
 
-	if (eventos.length != 0){
-		eventos.forEach((evento) => {
-			html_tarjetas += generar_tarjeta(evento, fechaRef)
+	if (events.length != 0){
+		events.forEach((event) => {
+			cardsHTML += generate_card(event, refDate)
 		})
 	} else {
-		html_tarjetas += `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</p><p class="text-center" style="color:white;font-size:2rem;">Try adjusting your search parameters</p></div>`
+		cardsHTML += `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</p><p class="text-center" style="color:white;font-size:2rem;">Try adjusting your search parameters</p></div>`
 	}
 
-	return html_tarjetas + `</div>`
+	return cardsHTML + `</div>`
 }
 
 
@@ -103,12 +99,39 @@ function filterContent() {
 		filteredEvents = filteredEvents.filter( evento => evento.name.toLowerCase().includes(searchWord))
 	}
 
+	const div_tarjetas = document.getElementById("cartas");
 	div_tarjetas.innerHTML = generar_tarjetas2(filteredEvents, data.currentDate);
 }
 
 
-// FILTER BASED ON DATE (BASED ON CURRENT URL)
+// FILTER BASED ON FILTER SECTION
+function filterContent2(my_object) {
+	// Checkboxes (only selected)
+	let categoriesFound = [];
+	document.querySelectorAll(".form-check-input").forEach( e => {if(e.checked == true) categoriesFound.push(e.value)})
+
+	// Input search current value
+	let searchWord = document.getElementById("search").value.toLowerCase();
+	
+	let filteredEvents = filterByDate2(my_object.currentTarget.myParam)																				//Initially, got all events
+
+	// data object filter section
+	if ( categoriesFound.length != 0){
+		filteredEvents = filteredEvents.filter( evento => categoriesFound.includes(evento.category))
+	}
+
+	if (searchWord != ""){
+		filteredEvents = filteredEvents.filter( evento => evento.name.toLowerCase().includes(searchWord))
+	}
+
+	const cards_div = document.getElementById("cartas");
+	cards_div.innerHTML = generar_tarjetas2(filteredEvents, my_object.currentTarget.myParam.currentDate);
+}
+
+
+// FILTER BASED ON DATE (BASED ON CURRENT URL)           NOT USED
 function filterByDate() {
+	
 	let currentURL = window.location.href
 	let eventsFilteredByDate = data.events
 	if( currentURL.includes("upcoming")){
@@ -123,6 +146,7 @@ function filterByDate() {
 
 
 function filterByDate2(my_object) {
+
 	let currentURL = window.location.href
 	let eventsFilteredByDate = my_object.events
 	if( currentURL.includes("upcoming")){
@@ -138,11 +162,11 @@ function filterByDate2(my_object) {
 function generateStats(dataObject) {
 
 	// FOR MAJOR CAPACITY
-	let capacities = []
-	dataObject.events.forEach(event => capacities.push(event.capacity))
+	let capacitiesAll = []
+	dataObject.events.forEach(event => capacitiesAll.push(event.capacity))
 
 	// higher capacity events
-	let mayorCapacidad = dataObject.events.filter( event => event.capacity == Math.max(...capacities))
+	let majorCapacity = dataObject.events.filter( event => event.capacity == Math.max(...capacitiesAll))
 
 
 	// ATTENDANCE PERCENTAGES
@@ -165,7 +189,7 @@ function generateStats(dataObject) {
 	// let arrayMinimunAtt = percentages.filter(event => event.percentage == minimumPerc)
 	let arrayMinimunAtt = percentages.filter(event => event.percentage == Math.min.apply(Math, percentages.map(event => event.percentage)))
 
-	let maxCapLenght = mayorCapacidad.length
+	let maxCapLenght = majorCapacity.length
 	let maxAttLenght = arrayMaximunAtt.length
 	let minAttLenght = arrayMinimunAtt.length
 
@@ -174,9 +198,10 @@ function generateStats(dataObject) {
 
 	// STATS BY CATEGORY (FUTURE EVENTS AND PAST EVENTS)
 
-	// Need to store the categories for each time period (upcomind or past)
-	let upcomingCategories = catArrayGenerator(dataObject.events.filter( e => dataObject.currentDate >= e.date));
-	let pastCategories = catArrayGenerator(dataObject.events.filter( e => dataObject.currentDate < e.date));
+	// Arranged to store categories for each time period (upcomind or past)
+	// let upcomingCategories = catArrayGenerator(dataObject.events.filter( e => dataObject.currentDate >= e.date));
+	let upcomingCategories = categorySetGenerator(dataObject.events.filter( e => dataObject.currentDate >= e.date));
+	let pastCategories = categorySetGenerator(dataObject.events.filter( e => dataObject.currentDate < e.date));
 
 
 	let upcomingEventsStats = []
@@ -188,83 +213,60 @@ function generateStats(dataObject) {
 
 	let allStats = {
 		cota: mayorLenght,
-		maxCap: arrayEqualizer(mayorLenght, mayorCapacidad),
-		maxPerc: arrayEqualizer(mayorLenght, arrayMaximunAtt),
-		minPerc: arrayEqualizer(mayorLenght, arrayMinimunAtt),
+		// maxCap: arrayEqualizer(mayorLenght, majorCapacity),
+		// maxPerc: arrayEqualizer(mayorLenght, arrayMaximunAtt),
+		// minPerc: arrayEqualizer(mayorLenght, arrayMinimunAtt),
+		maxCap: majorCapacity,
+		maxPerc: arrayMaximunAtt,
+		minPerc: arrayMinimunAtt,
 		upcoming: upcomingEventsStats,
 		past: pastEventsStats
 	}
-
-	// console.log(allStats)
 
 	return allStats;
 
 }
 
 
-// Categories Array Generator
-let catArrayGenerator = (eventsArray) => {
-	let catSet = new Set();
-	eventsArray.forEach(event => catSet.add(event.category))
-	return [...catSet]
-}
+// Categories Array Generator (NOT USED?)
+
+// let catArrayGenerator = (eventsArray) => {
+// 	let catSet = new Set();
+// 	eventsArray.forEach(event => catSet.add(event.category))
+// 	return [...catSet]
+// }
+
 
 // Generic category stats generator
 let generateCategoryStats = (categoryName, eventsArray) => {
-	let datos = {
+	let categoryData = {
 		category: categoryName,
 		attendanceTotal: 0,
 		capacityTotal: 0,
 		revenue: 0,
 	}
 	eventsArray.filter( event => {if(event.category == categoryName) {
-		datos.attendanceTotal += event.hasOwnProperty("assistance") ? event.assistance : event.estimate;
-		datos.capacityTotal += event.capacity
-		datos.revenue += (event.price * (event.hasOwnProperty("assistance") ? event.assistance : event.estimate) )
+		categoryData.attendanceTotal += event.hasOwnProperty("assistance") ? event.assistance : event.estimate;
+		categoryData.capacityTotal += event.capacity
+		categoryData.revenue += (event.price * (event.hasOwnProperty("assistance") ? event.assistance : event.estimate) )
 	}})
 
-	return datos;
+	return categoryData;
 }
 
 
-// Generates a new array with it's original content and filling the rest of its values with an empty string
-let arrayEqualizer = function(cota, arrToEq) {
-	let arrRtn = []
-	for (let index = 0; index < cota; index++) {
-		if (arrToEq[index] === undefined){
-			arrRtn.push("")
-		} else {
-			arrRtn.push(arrToEq[index])
-		}
+// Generates a new array with it's original content and filling the rest of its values with an empty string  (ANOTHER NOT USED!!)
+// let arrayEqualizer = function(cota, arrToEq) {
+// 	let arrRtn = []
+// 	for (let index = 0; index < cota; index++) {
+// 		if (arrToEq[index] === undefined){
+// 			arrRtn.push("")
+// 		} else {
+// 			arrRtn.push(arrToEq[index])
+// 		}
 		
-	}
-	return arrRtn;	
-}
-
-
-
-
-
-// let urlApi = ""
-// let urlPokeApi = "https://pokeapi.co/api/v2/pokemon/ditto"
-// let dataDir = "./assets/amazing_1.json"
-
-
-
-
-// let retrieveData = async function() {
-// 	try{
-// 		const response = await fetch(dataDir);
-// 		const responseData = await response.json();
-// 		return responseData;
-
-// 	} catch (error) {
-// 		console.error(error);
 // 	}
-
+// 	return arrRtn;	
 // }
 
-
-
-// var retrData = {}
 
