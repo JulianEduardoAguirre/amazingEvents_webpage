@@ -4,9 +4,8 @@ let asyncIndex = async function(){
 	const dataRetr = await response.json().then( apiEvents => {
 
 
-
-		//																															FIRST RENDERING SECTION
-		// 																																global declarations
+		// *************** FIRST RENDERING SECTION *************** 
+		// 									 global declarations
 
 		// CARDS SECTION
 		const div_tarjetas = document.getElementById("cartas");
@@ -14,18 +13,14 @@ let asyncIndex = async function(){
 
 		div_tarjetas.innerHTML = generateCards(filterByDate(apiEvents), apiEvents.currentDate);								//First time rendering cards (using all data)
 
-
-		// FILTER SECTION (CHECKBOXES & INPUT)
-
-		// CHECKBOX CONTAINER
+		// CHECKBOXES
 		const div_checkboxes = document.getElementById("checkboxes")
 		while(div_checkboxes.firstChild) { div_checkboxes.removeChild(div_checkboxes.firstChild);}	//Delete previous content (if exists)
 
 		div_checkboxes.innerHTML = checkBoxGenerator(filterByDate(apiEvents));																//First (and unique) time rendering checkboxes
 
 
-
-		//																												ADDING EVENT LISTENERS FOR FILTER SECTION
+	// *************** ADDING EVENT LISTENERS FOR FILTER SECTION *************** 
 
 		const inputSearch = document.getElementById("search")
 		inputSearch.addEventListener("input", filterContent)
@@ -36,10 +31,7 @@ let asyncIndex = async function(){
 			checkbox.addEventListener("click", filterContent);
 			checkbox.myParam = apiEvents;
 		}
-
-
 	})
-
 }
 
 asyncIndex();
