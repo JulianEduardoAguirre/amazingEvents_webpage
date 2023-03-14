@@ -21,6 +21,12 @@ let asyncDetails = async function(){
 		
 		// EVENTS COULD HAVE ASSISTANCE OR ESTIMATE PROPERTY
 		let assintanceOrEstimated = eventDetails.hasOwnProperty("assistance") ? "Estimated: ".concat(`${eventDetails.assistance}`):"Assistance: ".concat(`${eventDetails.estimate}`);
+
+		// ONLY TESTS (NOT IMPLEMENTED)
+		// let categoriesArray = [...categorySetGenerator2(apiEvents)]
+		// let cardClass = cardStyleArray[categoriesArray.indexOf(eventDetails.category) % cardStyleArray.length]
+		// console.log(cardClass)
+
 		
 		// CONTENT TEMPLATE STRING
 		let detailsContent = `
