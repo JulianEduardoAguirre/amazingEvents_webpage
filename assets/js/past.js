@@ -1,22 +1,27 @@
 let asyncPast = async function(){
-	const response = await fetch(apiUrl);
-	// const response = await fetch(localData);													//Discomment this line and comment the previous one if data is not being shown
-	const dataRetr = await response.json().then( apiEvents => {
 
+	const div_tarjetas = document.getElementById("cartas");
+	while(div_tarjetas.firstChild) {div_tarjetas.removeChild(div_tarjetas.firstChild);}	 
 
+	const div_checkboxes = document.getElementById("checkboxes")
+	while(div_checkboxes.firstChild) { div_checkboxes.removeChild(div_checkboxes.firstChild);}	//Delete previous content (if exists)
+
+	try {
+
+		// throw new Error('Error fetching API data') 																								//Thrown error for testing
+
+		const response = await fetch(apiUrl);
+		// const response = await fetch(localData);													//Discomment this line and comment the previous one if data is not being shown
+		const dataRetr = await response.json().then( apiEvents => {
+	
+	
 		// *************** FIRST RENDERING SECTION *************** 
 		// 									 global declarations
 
 		// CARDS SECTION
-		const div_tarjetas = document.getElementById("cartas");
-		while(div_tarjetas.firstChild) {div_tarjetas.removeChild(div_tarjetas.firstChild);}	  			//Delete previous content (if exists)
-
 		div_tarjetas.innerHTML = generateCards(filterByDate(apiEvents), apiEvents.currentDate);								//First time rendering cards (using all data)
 
 		// CHECKBOXES
-		const div_checkboxes = document.getElementById("checkboxes")
-		while(div_checkboxes.firstChild) { div_checkboxes.removeChild(div_checkboxes.firstChild);}	//Delete previous content (if exists)
-
 		div_checkboxes.innerHTML = checkBoxGenerator(filterByDate(apiEvents));																//First (and unique) time rendering checkboxes
 
 
@@ -32,6 +37,21 @@ let asyncPast = async function(){
 			checkbox.myParam = apiEvents;
 		}
 	})
+
+	} catch (error) {
+			console.log(error)
+			// Delete search bar container
+			const div_form = document.getElementById("div-formulario")
+			div_form.className = "d-none"
+
+			// Show error message on screen
+			div_tarjetas.innerHTML = `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">An error ocurred!</p>
+			<p class="text-center" style="color:white;font-size:2rem;">Try in another moment</p></div>`		
+	}
+
+
+
+
 }
 
 asyncPast();
