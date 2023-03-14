@@ -1,4 +1,4 @@
-let asyncIndex = async function(){
+let asyncFuture = async function(){
 	const response = await fetch(apiUrl);
 	// const response = await fetch(localData);													//Discomment this line and comment the previous one if data is not being shown
 	const dataRetr = await response.json().then( apiEvents => {
@@ -34,6 +34,6 @@ let asyncIndex = async function(){
 	})
 }
 
-asyncIndex();
+asyncFuture();
 
 

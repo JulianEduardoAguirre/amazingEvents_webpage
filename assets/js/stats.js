@@ -46,8 +46,8 @@ let asyncStats = async function(){
 		
 		let tableUpcomingString = `					<tr>
 		<td class="italic">Categories</td>
-		<td class="italic">Revenues</td>
-		<td class="italic">Percentage of attendance</td>
+		<td class="italic">Revenues (estimated)</td>
+		<td class="italic">Percentage of attendance (estimated)</td>
 		</tr>`
 		
 		datos.upcoming.forEach( element => tableUpcomingString += `
