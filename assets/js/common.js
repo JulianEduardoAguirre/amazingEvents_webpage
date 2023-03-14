@@ -1,3 +1,6 @@
+// WANT COLOURED CARDS??
+let colouredCards = false;
+
 // DATA SOURCES
 let apiUrl = "https://mindhub-xj03.onrender.com/api/amazing"
 let localData = "./assets/amazing_1.json";
@@ -81,7 +84,7 @@ function generateCards(myObj, categoriesArray){
 	if (myObj.events.length != 0){
 		myObj.events.forEach((event) => {
 			let cardClass = cardStyleArray[categoriesArray.indexOf(event.category) % cardStyleArray.length]
-			cardsHTML += generateCard(event, myObj.currentDate, cardClass, false)
+			cardsHTML += generateCard(event, myObj.currentDate, cardClass, colouredCards)
 		})
 	} else {
 		cardsHTML += `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</p><p class="text-center" style="color:white;font-size:2rem;">Try adjusting your search parameters</p></div>`
