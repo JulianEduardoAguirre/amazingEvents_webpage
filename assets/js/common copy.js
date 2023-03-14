@@ -37,7 +37,19 @@ const checkBoxGenerator = (events) => {
 	return checkBoxHTML;
 }
 
-
+//CARD STYLE OBJECT
+let cardStyles = {
+	0: "card-red",
+	1: "card-blue",
+	2: "card-green", 
+	3: "card-yellow",
+	4: "card-orange",
+	5: "card-magenta",
+	6: "card-cyan",
+	7: "card-purple",
+	8: "card-white",
+	9: "card-brown"
+}
 
 
 // SINGLE CARD GENERATOR
@@ -62,11 +74,34 @@ function generateCard(evento, refDate){
 </div>
 `
 }
+function generateCard2(evento, refDate){
 
+	return `<div class="mb-4 d-flex justify-content-center" onclick="viewDetails(${evento._id})">
+	<div class="card h-100">
+		<img src="${evento.image}" class="card-img-top" alt="${evento.name} image">
+		<div class="card-body">
+		<h5 class="card-title text-center">${evento.name}</h5>
+		<div class="d-flex mb-0 justify-content-evenly">
+			<p class="card-price d-inline mb-0"><small>${evento.date}</small></p>
+			<p class="card-price d-inline mb-0"><strong>$${evento.price}</strong></p>
+		</div>
+		<hr class="mb-2 mt-2">
+			<p class="card-text mb-2">${evento.description}</p>
+		</div>
+		<div class="card-footer">
+		<btn onclick="viewDetails(${evento._id})" class=${refDate >= evento.date ? '"btn btn-outline-secondary"':'"btn btn-outline-info"'} >View Details</btn>
+		</div>
+	</div>
+</div>
+`
+}
 
 
 // ALL-CARDS GENERATOR FUNCTION
 function generateCards(events, refDate){
+
+	let categorySet = categorySetGenerator(events)
+
 
 	let cardsHTML = `<div class="d-flex flex-wrap my-5 justify-content-around">`
 
@@ -239,64 +274,4 @@ function filterByDatePrototype() {
 	}
 
 	return eventsFilteredByDate;
-}
-
-
-//CARD STYLE ARRAY
-let cardStyleArray = [
-	"card-magenta",
-	"card-blue",
-	"card-green",
-	"card-yellow", 
-	"card-white", 
-	"card-red", 
-	"card-purple",
-	"card-orange", 
-	"card-cyan", 
-	"card-brown"
-]
-
-
-// SIMGLE CARD GENERATOR (WITH STYLE FOR COLOURS)
-function generateCard2(evento, refDate, cardCat){
-
-	return `<div class="mb-4 d-flex justify-content-center" onclick="viewDetails(${evento._id})">
-	<div class="card ${cardCat} h-100">
-		<img src="${evento.image}" class="card-img-top" alt="${evento.name} image">
-		<div class="card-body">
-		<h5 class="card-title text-center">${evento.name}</h5>
-		<div class="d-flex mb-0 justify-content-evenly">
-			<p class="card-price d-inline mb-0"><small>${evento.date}</small></p>
-			<p class="card-price d-inline mb-0"><strong>$${evento.price}</strong></p>
-		</div>
-		<hr class="mb-2 mt-2">
-			<p class="card-text mb-2">${evento.description}</p>
-		</div>
-		<div class="card-footer">
-		<btn onclick="viewDetails(${evento._id})" class=${refDate >= evento.date ? '"btn btn-outline-secondary"':'"btn btn-outline-info"'} >View Details</btn>
-		</div>
-	</div>
-</div>
-`
-}
-
-
-// ALL-CARDS GENERATOR FUNCTION (WITH STYLES)
-function generateCards2(events, refDate){
-
-	let categorySet = categorySetGenerator(events)
-
-
-	let cardsHTML = `<div class="d-flex flex-wrap my-5 justify-content-around">`
-
-	if (events.length != 0){
-		events.forEach((event) => {
-			cardCat = cardStyleArray[[...categorySet].indexOf(event.category)]
-			cardsHTML += generateCard2(event, refDate, cardCat)
-		})
-	} else {
-		cardsHTML += `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</p><p class="text-center" style="color:white;font-size:2rem;">Try adjusting your search parameters</p></div>`
-	}
-
-	return cardsHTML + `</div>`
 }

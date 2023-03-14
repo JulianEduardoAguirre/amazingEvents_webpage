@@ -2,6 +2,28 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	--card-body-red: rgba(255, 0, 0, 0.1);
+	--card-body-blue: rgba(0, 0, 255, 0.1);
+	--card-body-green: rgba(0, 128, 0, 0.1);
+	--card-body-yellow: rgb(255, 255, 0, 0.1);
+	--card-body-orange: rgba(255, 165, 0, 0.1);
+	--card-body-magenta: rgba(255, 0, 255, 0.1);
+	--card-body-cyan: rgba(0, 255, 255, 0.1);
+	--card-body-purple: rgba(128, 0, 128, 0.1);
+	--card-body-white: rgba(255, 255, 255, 0.1);
+	--card-body-brown: rgba(165, 42, 42, 0.1);
+	--card-body-silver: rgba(192, 192, 192, 0.1);
+	--card-shadow-red: red;
+	--card-shadow-blue: blue;
+	--card-shadow-green: green;
+	--card-shadow-yellow: yellow;
+	--card-shadow-orange: orange;
+	--card-shadow-magenta: magenta;
+	--card-shadow-cyan: cyan;
+	--card-shadow-purple: purple;
+	--card-shadow-white: white;
+	--card-shadow-brown: brown;
+	--card-shadow-silver: silver;
 }
 
 body {
@@ -223,16 +245,78 @@ input[type="checkbox"]:checked {
 	box-shadow: 5px 5px 8px magenta;
 }
 
+.card-body:hover {
+	background-color: rgba(17, 25, 40, 0.75);
+}
+
+
+/* COLORS FOR CARDS BASED IN CATEGORY */
+
+.card-red:hover {
+	/* background-color: red; */
+	background-color: var(--card-body-red);
+	box-shadow: 5px 5px 8px var(--card-shadow-red);
+}
+
+.card-blue:hover {
+	background-color: var(--card-body-blue);
+	box-shadow: 5px 5px 8px var(--card-shadow-blue);
+}
+
+.card-green:hover {
+	background-color: var(--card-body-green);
+	box-shadow: 5px 5px 8px var(--card-shadow-green);
+}
+
+.card-yellow:hover {
+	background-color: var(--card-body-yellow);
+	box-shadow: 5px 5px 8px var(--card-shadow-yellow);
+}
+
+.card-orange:hover {
+	background-color: var(--card-body-orange);
+	box-shadow: 5px 5px 8px var(--card-shadow-orange);
+}
+
+.card-magenta:hover {
+	background-color: var(--card-body-magenta);
+	box-shadow: 5px 5px 8px var(--card-shadow-magenta);
+}
+
+.card-cyan:hover {
+	background-color: var(--card-body-cyan);
+	box-shadow: 5px 5px 8px var(--card-shadow-cyan);
+}
+
+.card-purple:hover {
+	background-color: var(--card-body-purple);
+	box-shadow: 5px 5px 8px var(--card-shadow-purple);
+}
+
+.card-white:hover {
+	background-color: var(--card-body-white);
+	box-shadow: 5px 5px 8px var(--card-shadow-white);
+}
+
+.card-brown:hover {
+	background-color: var(--card-body-brown);
+	box-shadow: 5px 5px 8px var(--card-shadow-brown);
+}
+
+.card-silver:hover {
+	background-color: var(--card-body-silver);
+	box-shadow: 5px 5px 8px var(--card-shadow-silver);
+}
+
+
+
+
 @media (max-width: 350px){
 	.card:hover {
 		transform: none;
 	}
 }
 
-.card-body:hover {
-	background-color: rgba(17, 25, 40, 0.75);
-	color: white;
-}
 
 .card-footer {
 	margin-top: -30px;
@@ -312,6 +396,11 @@ table.blueTable td, table.blueTable th {
 
 table.blueTable tbody td {
   font-size: 16px;
+	padding-left: 10px
+}
+
+td .italic {
+	padding-left: 0px;
 }
 
 table.blueTable tr:nth-child(even) {
