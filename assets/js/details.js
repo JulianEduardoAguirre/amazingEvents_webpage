@@ -5,9 +5,14 @@ const details_container = document.getElementById("card-details")
 while(details_container.firstChild) {details_container.removeChild(details_container.firstChild);} 		//Delete content (If any)
 
 let asyncDetails = async function(){
-	const response = await fetch(apiUrl);
-	// const response = await fetch(localData);													//Discomment this line and comment the previous one if data is not being shown
-	const dataRetr = await response.json().then( apiEvents => {
+
+	try {
+
+		// throw new Error('Error fetching API data') 																								//Thrown error for testing
+
+		const response = await fetch(apiUrl);
+		// const response = await fetch(localData);													//Discomment this line and comment the previous one if data is not being shown
+		const dataRetr = await response.json().then( apiEvents => {
 
 		let filteredEvent = apiEvents.events.filter(info => info._id == id)
 		eventDetails = filteredEvent[0]
@@ -57,9 +62,13 @@ let asyncDetails = async function(){
 		
 		details_container.innerHTML = detailsContent
 
-
-
 	})
+	} catch (error) {
+		console.log(error)
+		details_container.innerHTML = `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">An error ocurred!</p>
+		<p class="text-center" style="color:white;font-size:2rem;">Try in another moment</p></div>`
+	}
+	
 }
 
 asyncDetails();		

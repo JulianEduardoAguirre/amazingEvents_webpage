@@ -204,6 +204,15 @@ let generateCategoryStats = (categoryName, eventsArray) => {
 }
 
 
+
+
+
+
+
+
+
+
+
 // ****************************************** NOT USED ****************************************************
 // FILTER BASED ON FILTER SECTION (PROTOTYPE)
 function filterContentProtorype() {
