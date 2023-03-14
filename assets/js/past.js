@@ -22,7 +22,8 @@ let asyncPast = async function(){
 		div_tarjetas.innerHTML = generateCards(filterByDate(apiEvents), apiEvents.currentDate);								//First time rendering cards (using all data)
 
 		// CHECKBOXES
-		div_checkboxes.innerHTML = checkBoxGenerator(filterByDate(apiEvents));																//First (and unique) time rendering checkboxes
+		// div_checkboxes.innerHTML = checkBoxGenerator(filterByDate(apiEvents));										//Use this for only checkboxes with available categories
+		div_checkboxes.innerHTML = checkBoxGenerator(apiEvents.events);																//First (and unique) time rendering checkboxes
 
 
 	// *************** ADDING EVENT LISTENERS FOR FILTER SECTION *************** 

@@ -14,6 +14,8 @@ let asyncFuture = async function(){
 		// const response = await fetch(localData);													//Discomment this line and comment the previous one if data is not being shown
 		const dataRetr = await response.json().then( apiEvents => {
 	
+		const allCategories = categorySetGenerator(apiEvents.events)
+
 	
 		// *************** FIRST RENDERING SECTION *************** 
 		// 									 global declarations
@@ -22,7 +24,8 @@ let asyncFuture = async function(){
 		div_tarjetas.innerHTML = generateCards(filterByDate(apiEvents), apiEvents.currentDate);			//First time rendering cards (using all data)
 
 		// CHECKBOXES
-		div_checkboxes.innerHTML = checkBoxGenerator(filterByDate(apiEvents));											//First (and unique) time rendering checkboxes
+		// div_checkboxes.innerHTML = checkBoxGenerator(filterByDate(apiEvents));										//Use this for only checkboxes with available categories
+		div_checkboxes.innerHTML = checkBoxGenerator(apiEvents.events);															//First (and unique) time rendering checkboxes
 
 
 	// *************** ADDING EVENT LISTENERS FOR FILTER SECTION *************** 
