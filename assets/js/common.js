@@ -4,12 +4,18 @@ let localData = "./assets/amazing_1.json";
 
 
 // GO TO DETAILS
-function viewDetails(card_id) {
-	window.location.href = `./details.html?id=${card_id}`
+function viewDetails(cardId) {
+	window.location.href = `./details.html?id=${cardId}`
 }
 
 
-// SET WITH THE CATEGORIES
+//CARD STYLE ARRAY
+let cardStyleArray = ["card-magenta",	"card-blue","card-green",	"card-yellow", "card-white", "card-red", 
+	"card-purple", "card-orange", "card-cyan", "card-brown"];
+
+
+
+// CATEGORIES SET GENERATION
 const categorySetGenerator = (allEvents) => {
 	let categoriesSet = new Set();
 	allEvents.forEach( evento => categoriesSet.add(evento.category) )
@@ -17,15 +23,20 @@ const categorySetGenerator = (allEvents) => {
 	return categoriesSet;																																// Return as Set
 }
 
+const categorySetGenerator2 = (myObj) => {
+	let categoriesSet = new Set();
+	myObj.events.forEach( evento => categoriesSet.add(evento.category) )
+	// return [...categoriesSet];																												// Return as an Array
+	return categoriesSet;																																// Return as Set
+}
+
 
 // CHECKBOX SQUARES GENERATOR
-const checkBoxGenerator = (events) => {
-
-	categoriesSet = categorySetGenerator(events);
+const checkBoxGenerator = (categoriesArray) => {
 
 	let checkBoxHTML = `<div class="d-flex flex-wrap d-sm-flex my-1 gap-2">`;
 
-	categoriesSet.forEach(categoria => 
+	categoriesArray.forEach(categoria => 
 		{ checkBoxHTML += `	<div class="form-check ms-2">
 			<input type="checkbox" class="form-check-input" value="${categoria}" id="checkCat-${categoria}">
 			<label class="form-check-label" for="checkCat-${categoria}">${categoria}</label>
@@ -38,13 +49,11 @@ const checkBoxGenerator = (events) => {
 }
 
 
-
-
 // SINGLE CARD GENERATOR
-function generateCard(evento, refDate){
+function generateCard(evento, refDate, cardClassColor, withColour){
 
 	return `<div class="mb-4 d-flex justify-content-center" onclick="viewDetails(${evento._id})">
-	<div class="card h-100">
+	<div class="card ${withColour ? cardClassColor : ""} h-100">
 		<img src="${evento.image}" class="card-img-top" alt="${evento.name} image">
 		<div class="card-body">
 		<h5 class="card-title text-center">${evento.name}</h5>
@@ -64,15 +73,15 @@ function generateCard(evento, refDate){
 }
 
 
-
 // ALL-CARDS GENERATOR FUNCTION
-function generateCards(events, refDate){
+function generateCards(myObj, categoriesArray){
 
 	let cardsHTML = `<div class="d-flex flex-wrap my-5 justify-content-around">`
 
-	if (events.length != 0){
-		events.forEach((event) => {
-			cardsHTML += generateCard(event, refDate)
+	if (myObj.events.length != 0){
+		myObj.events.forEach((event) => {
+			let cardClass = cardStyleArray[categoriesArray.indexOf(event.category) % cardStyleArray.length]
+			cardsHTML += generateCard(event, myObj.currentDate, cardClass, false)
 		})
 	} else {
 		cardsHTML += `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</p><p class="text-center" style="color:white;font-size:2rem;">Try adjusting your search parameters</p></div>`
@@ -82,7 +91,7 @@ function generateCards(events, refDate){
 }
 
 
-// FILTER BASED ON FILTER SECTION
+// FILTER BASED ON SEARCH BAR
 function filterContent(my_object) {
 	// Checkboxes (only selected)
 	let categoriesFound = [];
@@ -90,10 +99,14 @@ function filterContent(my_object) {
 
 	// Input search current value
 	let searchWord = document.getElementById("search").value.toLowerCase();
-	
-	let filteredEvents = filterByDate(my_object.currentTarget.myParam)																				//Initially, got all events
+	let allCategoriesArray2 = [...categorySetGenerator2(my_object.currentTarget.myParam)]
 
-	// data object filter section
+
+	let filteredObj = filterByDate(my_object.currentTarget.myParam)																			
+	let filteredEvents = filteredObj.events																																	//Initially, got all the events
+
+
+	// Apllying the filters
 	if ( categoriesFound.length != 0){
 		filteredEvents = filteredEvents.filter( evento => categoriesFound.includes(evento.category))
 	}
@@ -102,39 +115,54 @@ function filterContent(my_object) {
 		filteredEvents = filteredEvents.filter( evento => evento.name.toLowerCase().includes(searchWord))
 	}
 
-	const cards_div = document.getElementById("cartas");
-	cards_div.innerHTML = generateCards(filteredEvents, my_object.currentTarget.myParam.currentDate);
-}
-
-
-function filterByDate(my_object) {
-
-	let currentURL = window.location.href
-	let eventsFilteredByDate = my_object.events
-	if( currentURL.includes("upcoming")){
-		eventsFilteredByDate = my_object.events.filter( e => e.date >= my_object.currentDate)
-	} else if (currentURL.includes("past")){
-		eventsFilteredByDate = my_object.events.filter( e => e.date < my_object.currentDate)
+	// Return object
+	let filteredContent = {
+		currentDate: my_object.currentTarget.myParam.currentDate,
+		events: filteredEvents
 	}
 
-	return eventsFilteredByDate;
+	const cards_div = document.getElementById("cartas");
+	cards_div.innerHTML = generateCards(filteredContent, allCategoriesArray2);
 }
 
 
-function generateStats(dataObject) {
+// FILTER BASED ON CURRENT PAGE
+function filterByDate(myObject) {
+
+	let currentURL = window.location.href
+	let eventsFilteredByDate = myObject.events
+	if( currentURL.includes("upcoming")){
+		eventsFilteredByDate = myObject.events.filter( e => e.date >= myObject.currentDate)
+	} else if (currentURL.includes("past")){
+		eventsFilteredByDate = myObject.events.filter( e => e.date < myObject.currentDate)
+	}
+
+	// Return object
+	let filteredObj = {
+		currentDate: myObject.currentDate,
+		events: eventsFilteredByDate
+	}
+
+	return filteredObj;
+
+}
+
+
+// GENERATES ALL STATS FROM UNFILTERED DATA
+function generateStats(myObject) {
 
 	// FOR MAJOR CAPACITY
 	let capacitiesAll = []
-	dataObject.events.forEach(event => capacitiesAll.push(event.capacity))
+	myObject.events.forEach(event => capacitiesAll.push(event.capacity))
 
 	// higher capacity events
-	let majorCapacity = dataObject.events.filter( event => event.capacity == Math.max(...capacitiesAll))
+	let majorCapacity = myObject.events.filter( event => event.capacity == Math.max(...capacitiesAll))
 
 
 	// ATTENDANCE PERCENTAGES
 	let percentages = []
 
-	dataObject.events.forEach(event => percentages.push({
+	myObject.events.forEach(event => percentages.push({
 		_id: event._id,
 		name: event.name,
 		capacity: event.capacity,
@@ -161,17 +189,17 @@ function generateStats(dataObject) {
 	// STATS BY CATEGORY (FUTURE EVENTS AND PAST EVENTS)
 
 	// Arranged to store categories for each time period (upcomind or past)
-	let upcomingCategories = categorySetGenerator(dataObject.events.filter( e => dataObject.currentDate <= e.date));
-	let pastCategories = categorySetGenerator(dataObject.events.filter( e => dataObject.currentDate > e.date));
+	let upcomingCategories = categorySetGenerator(myObject.events.filter( e => myObject.currentDate <= e.date));
+	let pastCategories = categorySetGenerator(myObject.events.filter( e => myObject.currentDate > e.date));
 
 
 	let upcomingEventsStats = []
-	upcomingCategories.forEach( catName => upcomingEventsStats.push(generateCategoryStats(catName, dataObject.events.filter(event => dataObject.currentDate <= event.date))) )
+	upcomingCategories.forEach( catName => upcomingEventsStats.push(generateCategoryStats(catName, myObject.events.filter(event => myObject.currentDate <= event.date))) )
 
 	let pastEventsStats = []
-	pastCategories.forEach( catName => pastEventsStats.push(generateCategoryStats(catName, dataObject.events.filter(event => dataObject.currentDate > event.date))) )
+	pastCategories.forEach( catName => pastEventsStats.push(generateCategoryStats(catName, myObject.events.filter(event => myObject.currentDate > event.date))) )
 
-	// RETURNED OBJECT
+	// OBJECT TO RETURN
 	let allStats = {
 		cota: mayorLenght,
 		maxCap: majorCapacity,
@@ -185,7 +213,7 @@ function generateStats(dataObject) {
 
 }
 
-// Generic category stats generator
+// GENERIC CATEGORY STATS GENERATOR
 let generateCategoryStats = (categoryName, eventsArray) => {
 	let categoryData = {
 		category: categoryName,
@@ -201,111 +229,5 @@ let generateCategoryStats = (categoryName, eventsArray) => {
 	}})
 
 	return categoryData;
-}
 
-
-
-
-
-
-
-
-
-
-
-// ****************************************** NOT USED ****************************************************
-// FILTER BASED ON FILTER SECTION (PROTOTYPE)
-function filterContentProtorype() {
-	let categoriesFound = [];
-	document.querySelectorAll(".form-check-input").forEach( e => {if(e.checked == true) categoriesFound.push(e.value)})
-
-	let searchWord = document.getElementById("search").value.toLowerCase();
-	
-	let filteredEvents = filterByDate()		//Initially, got all events
-
-	if ( categoriesFound.length != 0){
-		filteredEvents = filteredEvents.filter( evento => categoriesFound.includes(evento.category))
-	}
-
-	if (searchWord != ""){
-		filteredEvents = filteredEvents.filter( evento => evento.name.toLowerCase().includes(searchWord))
-	}
-
-	const div_tarjetas = document.getElementById("cartas");
-	div_tarjetas.innerHTML = generateCards(filteredEvents, data.currentDate);
-}
-
-
-// FILTER BASED ON DATE (BASED ON CURRENT URL) (PROTYPE)
-function filterByDatePrototype() {
-	
-	let currentURL = window.location.href
-	let eventsFilteredByDate = data.events
-	if( currentURL.includes("upcoming")){
-		eventsFilteredByDate = data.events.filter( e => e.date >= data.currentDate)
-	} else if (currentURL.includes("past")){
-		eventsFilteredByDate = data.events.filter( e => e.date < data.currentDate)
-	}
-
-	return eventsFilteredByDate;
-}
-
-
-//CARD STYLE ARRAY
-let cardStyleArray = [
-	"card-magenta",
-	"card-blue",
-	"card-green",
-	"card-yellow", 
-	"card-white", 
-	"card-red", 
-	"card-purple",
-	"card-orange", 
-	"card-cyan", 
-	"card-brown"
-]
-
-
-// SIMGLE CARD GENERATOR (WITH STYLE FOR COLOURS)
-function generateCard2(evento, refDate, cardCat){
-
-	return `<div class="mb-4 d-flex justify-content-center" onclick="viewDetails(${evento._id})">
-	<div class="card ${cardCat} h-100">
-		<img src="${evento.image}" class="card-img-top" alt="${evento.name} image">
-		<div class="card-body">
-		<h5 class="card-title text-center">${evento.name}</h5>
-		<div class="d-flex mb-0 justify-content-evenly">
-			<p class="card-price d-inline mb-0"><small>${evento.date}</small></p>
-			<p class="card-price d-inline mb-0"><strong>$${evento.price}</strong></p>
-		</div>
-		<hr class="mb-2 mt-2">
-			<p class="card-text mb-2">${evento.description}</p>
-		</div>
-		<div class="card-footer">
-		<btn onclick="viewDetails(${evento._id})" class=${refDate >= evento.date ? '"btn btn-outline-secondary"':'"btn btn-outline-info"'} >View Details</btn>
-		</div>
-	</div>
-</div>
-`
-}
-
-
-// ALL-CARDS GENERATOR FUNCTION (WITH STYLES)
-function generateCards2(events, refDate){
-
-	let categorySet = categorySetGenerator(events)
-
-
-	let cardsHTML = `<div class="d-flex flex-wrap my-5 justify-content-around">`
-
-	if (events.length != 0){
-		events.forEach((event) => {
-			cardCat = cardStyleArray[[...categorySet].indexOf(event.category)]
-			cardsHTML += generateCard2(event, refDate, cardCat)
-		})
-	} else {
-		cardsHTML += `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</p><p class="text-center" style="color:white;font-size:2rem;">Try adjusting your search parameters</p></div>`
-	}
-
-	return cardsHTML + `</div>`
 }
