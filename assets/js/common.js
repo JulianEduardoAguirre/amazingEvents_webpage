@@ -165,7 +165,8 @@ function generateStats(myObject) {
 	// ATTENDANCE PERCENTAGES
 	let percentages = []
 
-	myObject.events.forEach(event => percentages.push({
+	// myObject.events.forEach(event => percentages.push({																																//ALL EVENTS
+	myObject.events.filter(e => e.date < myObject.currentDate).forEach(event => percentages.push({												//ONLY PAST EVENTS
 		_id: event._id,
 		name: event.name,
 		capacity: event.capacity,
@@ -194,7 +195,6 @@ function generateStats(myObject) {
 	// Arranged to store categories for each time period (upcomind or past)
 	let upcomingCategories = categorySetGenerator(myObject.events.filter( e => myObject.currentDate <= e.date));
 	let pastCategories = categorySetGenerator(myObject.events.filter( e => myObject.currentDate > e.date));
-
 
 	let upcomingEventsStats = []
 	upcomingCategories.forEach( catName => upcomingEventsStats.push(generateCategoryStats(catName, myObject.events.filter(event => myObject.currentDate <= event.date))) )
