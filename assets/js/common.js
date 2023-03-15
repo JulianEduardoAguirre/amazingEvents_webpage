@@ -197,10 +197,12 @@ function generateStats(myObject) {
 	let pastCategories = categorySetGenerator(myObject.events.filter( e => myObject.currentDate > e.date));
 
 	let upcomingEventsStats = []
-	upcomingCategories.forEach( catName => upcomingEventsStats.push(generateCategoryStats(catName, myObject.events.filter(event => myObject.currentDate <= event.date))) )
+	// upcomingCategories.forEach( catName => upcomingEventsStats.push(generateCategoryStats(catName, myObject.events.filter(event => myObject.currentDate <= event.date))) )		//Bad Mode
+	upcomingCategories.forEach( catName => upcomingEventsStats.push(generateCategoryStats2(catName, myObject.events.filter(event => myObject.currentDate <= event.date))) )			//Good Mode
 
 	let pastEventsStats = []
-	pastCategories.forEach( catName => pastEventsStats.push(generateCategoryStats(catName, myObject.events.filter(event => myObject.currentDate > event.date))) )
+	// pastCategories.forEach( catName => pastEventsStats.push(generateCategoryStats(catName, myObject.events.filter(event => myObject.currentDate > event.date))) )						//Bad Mode
+	pastCategories.forEach( catName => pastEventsStats.push(generateCategoryStats2(catName, myObject.events.filter(event => myObject.currentDate > event.date))) )							//Good Mode
 
 	// OBJECT TO RETURN
 	let allStats = {
@@ -217,6 +219,7 @@ function generateStats(myObject) {
 }
 
 // GENERIC CATEGORY STATS GENERATOR
+// For Bad Mode (Not Used)
 let generateCategoryStats = (categoryName, eventsArray) => {
 	let categoryData = {
 		category: categoryName,
@@ -230,6 +233,27 @@ let generateCategoryStats = (categoryName, eventsArray) => {
 		categoryData.capacityTotal += event.capacity
 		categoryData.revenue += (event.price * (event.hasOwnProperty("assistance") ? event.assistance : event.estimate) )
 	}})
+
+	return categoryData;
+
+}
+
+
+// For Good Mode
+let generateCategoryStats2 = (categoryName, eventsArray) => {
+	let categoryData = {
+		category: categoryName,
+		percentages: [],
+		avgPercentage: "",
+		revenue: 0,
+	}
+
+	eventsArray.filter( event => {if(event.category == categoryName) {
+		categoryData.percentages.push((event.hasOwnProperty("assistance") ? event.assistance : event.estimate) / event.capacity * 100);
+		categoryData.revenue += (event.price * (event.hasOwnProperty("assistance") ? event.assistance : event.estimate) );
+	}})
+
+	categoryData.avgPercentage = categoryData.percentages.reduce((a, b) => a + b) / categoryData.percentages.length
 
 	return categoryData;
 

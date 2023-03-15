@@ -50,11 +50,21 @@ let asyncStats = async function(){
 		<td class="italic">Percentage of attendance (estimated)</td>
 		</tr>`
 		
+		//Bad Mode
+		// datos.upcoming.forEach( element => tableUpcomingString += `
+		// <tr>
+		// 	<td>${element.category}</td>
+		// 	<td>$${element.revenue}</td>
+		// 	<td>${(element.attendanceTotal / element.capacityTotal).toFixed(2) * 100}%</td>
+		// </tr>
+		// `)
+
+		//Good Mode
 		datos.upcoming.forEach( element => tableUpcomingString += `
 		<tr>
 			<td>${element.category}</td>
 			<td>$${element.revenue}</td>
-			<td>${(element.attendanceTotal / element.capacityTotal).toFixed(2) * 100}%</td>
+			<td>${element.avgPercentage.toFixed(2)}%</td>
 		</tr>
 		`)
 		
@@ -68,11 +78,21 @@ let asyncStats = async function(){
 		<td class="italic">Percentage of attendance</td>
 		</tr>`
 		
+		//Bad Mode
+		// datos.past.forEach( element => tablePastString += `
+		// <tr>
+		// 	<td>${element.category}</td>
+		// 	<td>$${element.revenue}</td>
+		// 	<td>${(element.attendanceTotal / element.capacityTotal).toFixed(2) * 100}%</td>
+		// </tr>
+		// `)
+
+		//Good Mode
 		datos.past.forEach( element => tablePastString += `
 		<tr>
 			<td>${element.category}</td>
 			<td>$${element.revenue}</td>
-			<td>${(element.attendanceTotal / element.capacityTotal).toFixed(2) * 100}%</td>
+			<td>${element.avgPercentage.toFixed(2)}%</td>
 		</tr>
 		`)
 		
