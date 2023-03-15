@@ -219,7 +219,7 @@ function generateStats(myObject) {
 }
 
 // GENERIC CATEGORY STATS GENERATOR
-// For Bad Mode (Not Used )
+// For Bad Mode (Not Used)
 let generateCategoryStats = (categoryName, eventsArray) => {
 	let categoryData = {
 		category: categoryName,
