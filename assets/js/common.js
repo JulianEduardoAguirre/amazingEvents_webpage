@@ -11,10 +11,12 @@ function viewDetails(cardId) {
 	window.location.href = `./details.html?id=${cardId}`
 }
 
+// CARD STYLE ARRAY
+// let cardStyleArray = ["card-magenta",	"card-blue","card-green",	"card-yellow", "card-white", "card-red", 
+// 	"card-purple", "card-orange", "card-cyan", "card-brown"];
 
-//CARD STYLE ARRAY
-let cardStyleArray = ["card-magenta",	"card-blue","card-green",	"card-yellow", "card-white", "card-red", 
-	"card-purple", "card-orange", "card-cyan", "card-brown"];
+// CARDS & DETAILS STYLE ARRAY (For colored animations)
+let colorStyles = ["red", "blue", "green", "yellow", "orange", "magenta", "cyan", "purple", "white", "brown", "silver"];
 
 
 
@@ -56,7 +58,7 @@ const checkBoxGenerator = (categoriesArray) => {
 function generateCard(evento, refDate, cardClassColor, withColour){
 
 	return `<div class="mb-4 d-flex justify-content-center" onclick="viewDetails(${evento._id})">
-	<div class="card ${withColour ? cardClassColor : ""} h-100">
+	<div class="card ${withColour ? "card-".concat(cardClassColor) : ""} h-100">
 		<img src="${evento.image}" class="card-img-top" alt="${evento.name} image">
 		<div class="card-body">
 		<h5 class="card-title text-center">${evento.name}</h5>
@@ -83,8 +85,8 @@ function generateCards(myObj, categoriesArray){
 
 	if (myObj.events.length != 0){
 		myObj.events.forEach((event) => {
-			let cardClass = cardStyleArray[categoriesArray.indexOf(event.category) % cardStyleArray.length]
-			cardsHTML += generateCard(event, myObj.currentDate, cardClass, colouredCards)
+			let colorStyle = colorStyles[categoriesArray.indexOf(event.category) % colorStyles.length]
+			cardsHTML += generateCard(event, myObj.currentDate, colorStyle, colouredCards)
 		})
 	} else {
 		cardsHTML += `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</p><p class="text-center" style="color:white;font-size:2rem;">Try adjusting your search parameters</p></div>`
