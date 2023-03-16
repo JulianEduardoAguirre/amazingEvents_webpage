@@ -191,13 +191,15 @@ function generateStats(myObject) {
 
 
 	// STATS BY CATEGORY (FUTURE EVENTS AND PAST EVENTS)
-
-	let allCategoriesArray = [...categorySetGenerator(myObject.events)];
-	console.log(allCategoriesArray)
+	// All categories for sorting purposes
+	let allCategories = [...categorySetGenerator(myObject.events)]
 
 	// Arranged to store categories for each time period (upcomind or past)
-	let upcomingCategories = categorySetGenerator(myObject.events.filter( e => myObject.currentDate <= e.date));
-	let pastCategories = categorySetGenerator(myObject.events.filter( e => myObject.currentDate > e.date));
+	let upcomingCategories = [...categorySetGenerator(myObject.events.filter( e => myObject.currentDate <= e.date))];
+	let pastCategories = [...categorySetGenerator(myObject.events.filter( e => myObject.currentDate > e.date))];
+
+	upcomingCategories = allCategories.filter(category => upcomingCategories.includes(category));
+	pastCategories = allCategories.filter(category => pastCategories.includes(category));
 
 	let upcomingEventsStats = []
 	// upcomingCategories.forEach( catName => upcomingEventsStats.push(generateCategoryStats(catName, myObject.events.filter(event => myObject.currentDate <= event.date))) )		//Bad Mode
