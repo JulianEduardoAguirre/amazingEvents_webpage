@@ -430,22 +430,20 @@ table.blueTable thead th:first-child {
 	height: 80%;
 	min-height: 350px;
 	min-width: 700px;
-	/* border: 1px solid black; */
-	/* box-shadow: 2px 2px 2px 2px magenta; */
+	max-width: 1200px;
+	margin: 50px auto;
 }
 
 
 
 
 #details-image {
-	/* border: 3px solid blue; */
 	border-right: 3px solid var(--card-color);
 	width: 50%;
 	min-height: 350px;
 	justify-content: center;
 	align-items: center;
 	color: white;
-	/* box-shadow: 2px 2px 2px 2px magenta; */
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
 	background-color: rgba(17, 25, 40, 0.45);
@@ -453,7 +451,6 @@ table.blueTable thead th:first-child {
 
 #details-image img {
 	min-height: 250px;
-	min-width: 80%;
 	max-width: 80%;
 	border: 5px solid white;
 
@@ -461,7 +458,6 @@ table.blueTable thead th:first-child {
 
 
 #details-info {
-	/* border: 3px solid green; */
 	width: 50%;
 	min-height: 350px;
 	color: white;
@@ -473,13 +469,38 @@ table.blueTable thead th:first-child {
 	background-color: rgba(17, 25, 40, 0.95);
 }
 
-#details-head {
-	/* border: 3px solid white; */
+@media screen and (max-width: 767px) {
+	#details {
+		min-width: 300px;
+		max-width: 700px;
+		margin: 20px 10px;
+		margin-bottom: 70px;
+	}
 
+	#details-image {
+		width: 100%;
+		border-top-right-radius: 15px;
+		border-bottom-left-radius: 0;
+	}
+
+	#details-info {
+		width: 100%;
+		border-top-right-radius: 0;
+		border-bottom-left-radius: 15px;
+	}
+
+	#details-footer p {
+		display: inline
+	}
 }
 
-#details-date-place {
-	/* border: 3px solid orange; */
+@media screen and (max-width: 340px) {
+	#details {
+		min-width: 280px;
+		max-width: 300px;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
 }
 
 #details-description {
@@ -494,13 +515,11 @@ table.blueTable thead th:first-child {
 
 }
 
-#details-footer p {
-}
-
 .cap-conf {
 	display: inline-block;
 	min-width: 85px;
 }
+
 
 /* Details Default */
 .details-shadow-default {
@@ -511,8 +530,6 @@ table.blueTable thead th:first-child {
 	border-top: 2px dotted var(--card-shadow-magenta);
 	border-bottom: 2px dotted var(--card-shadow-magenta);
 }
-
-
 
 
 /* Details red */
@@ -530,6 +547,7 @@ table.blueTable thead th:first-child {
 	box-shadow: 1px 2px 10px var(--card-shadow-red);
 }
 
+
 /* Details blue */
 .details-shadow-blue {
 	animation: pulsateBlue 5s ease-out infinite;
@@ -544,6 +562,7 @@ table.blueTable thead th:first-child {
 .details-border-blue {
 	box-shadow: 1px 2px 10px var(--card-shadow-blue);
 }
+
 
 /* Details green */
 .details-shadow-green {
@@ -560,6 +579,7 @@ table.blueTable thead th:first-child {
 	box-shadow: 1px 2px 10px var(--card-shadow-green);
 }
 
+
 /* Details yellow */
 .details-shadow-yellow {
 	animation: pulsateYellow 5s ease-out infinite;
@@ -574,6 +594,7 @@ table.blueTable thead th:first-child {
 .details-border-yellow {
 	box-shadow: 1px 2px 10px var(--card-shadow-yellow);
 }
+
 
 /* Details orange */
 .details-shadow-orange {
@@ -590,6 +611,7 @@ table.blueTable thead th:first-child {
 	box-shadow: 1px 2px 10px var(--card-shadow-orange);
 }
 
+
 /* Details magenta */
 .details-shadow-magenta {
 	animation: pulsateMagenta 5s ease-out infinite;
@@ -604,6 +626,7 @@ table.blueTable thead th:first-child {
 .details-border-magenta {
 	box-shadow: 1px 2px 10px var(--card-shadow-magenta);
 }
+
 
 /* Details cyan */
 .details-shadow-cyan {
@@ -620,6 +643,7 @@ table.blueTable thead th:first-child {
 	box-shadow: 1px 2px 10px var(--card-shadow-cyan);
 }
 
+
 /* Details purple */
 .details-shadow-purple {
 	animation: pulsatePurple 5s ease-out infinite;
@@ -634,6 +658,7 @@ table.blueTable thead th:first-child {
 .details-border-purple {
 	box-shadow: 1px 2px 10px var(--card-shadow-purple);
 }
+
 
 /* Details white */
 .details-shadow-white {
@@ -650,6 +675,7 @@ table.blueTable thead th:first-child {
 	box-shadow: 1px 2px 10px var(--card-shadow-white);
 }
 
+
 /* Details brown */
 .details-shadow-brown {
 	animation: pulsateBrown 5s ease-out infinite;
@@ -664,6 +690,7 @@ table.blueTable thead th:first-child {
 .details-border-brown {
 	box-shadow: 1px 2px 10px var(--card-shadow-brown);
 }
+
 
 /* Details silver */
 .details-shadow-silver {
@@ -681,12 +708,6 @@ table.blueTable thead th:first-child {
 }
 
 
-
-
-
-
-
-
 @media (max-width: 375px){
 	.text-muted {
 		font-size: .75rem;
@@ -699,7 +720,7 @@ table.blueTable thead th:first-child {
 }
 
 
- @media (min-width: 320px){
+@media (min-width: 320px){
 	.justify-content-sm-around {
 			justify-content: space-around!important;
 	}
