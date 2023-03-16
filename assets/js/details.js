@@ -2,7 +2,9 @@ let params = new URLSearchParams(document.location.search)
 let id = params.get("id")
 
 const details_container = document.getElementById("card-details")
+
 while(details_container.firstChild) {details_container.removeChild(details_container.firstChild);} 		//Delete content (If any)
+
 
 let asyncDetails = async function(){
 
@@ -20,51 +22,53 @@ let asyncDetails = async function(){
 
 		
 		// EVENTS COULD HAVE ASSISTANCE OR ESTIMATE PROPERTY
-		let assintanceOrEstimated = eventDetails.hasOwnProperty("assistance") ? "Estimated: ".concat(`${eventDetails.assistance}`):"Assistance: ".concat(`${eventDetails.estimate}`);
+		let assintanceOrEstimated = eventDetails.hasOwnProperty("assistance") ? "<span class='cap-conf'>Estimated:</span>  ".concat(`${eventDetails.assistance}`):"<span class='cap-conf'>Assistance:</span>: ".concat(`${eventDetails.estimate}`);
 
-		// ONLY TESTS (NOT IMPLEMENTED)
-		// let categoriesArray = [...categorySetGenerator2(apiEvents)]
-		// let cardClass = cardStyleArray[categoriesArray.indexOf(eventDetails.category) % cardStyleArray.length]
-		// console.log(cardClass)
-
+		// FOR BOX SHADOW COLORED ANIMATION
+		let categoriesArray = [...categorySetGenerator2(apiEvents)]
+		let colorStyle = colorStyles[categoriesArray.indexOf(eventDetails.category) % colorStyles.length]							
+		// colorStyle = "default"																																														//COMMENT THIS LINE FOR COLORED ANIMATION	
+		colorStyle = (colouredCards? colorStyle: "default");												
 		
-		// CONTENT TEMPLATE STRING
 		let detailsContent = `
-		<div class="card-details-all p-3">
-		<div class="d-flex g-0">
-			<div class="col-6 card-left d-flex flex-column align-items-center justify-content-center">
-				<img
-					src="${eventDetails.image}}"
-					alt="${eventDetails.name}"
-					class="img-fluid details-image">
-				<h4 class="card-category mt-2 text-center text-decoration-underline">${eventDetails.category}</h4>
-			</div>
-			<div class="col-6 card-right">
-				<div class="card-details-body">
-					<div class="pt-3 px-2 px-md-3 d-md-flex justify-content-md-between">
-						<h3 class="card-title">${eventDetails.name}</h3>
-						<h3 class="pe-5 italic">$${eventDetails.price}</h3>
-					</div>
-					<p class="card-text mb-0 ms-2 ms-md-4">
-						<small class="text-muted">Date: ${eventDetails.date}</small>
-					</p>
-					<p class="card-text mb-2 ms-2 ms-md-4">
-						<small class="text-muted">Place: ${eventDetails.place}</small>
-					</p>
-					<div class="description">
-						<p class="card-text mt-1 mt-md-4 px-2 px-md-3">	${eventDetails.description}</p>
-					</div>
-		
-					<p class="card-text mt-1 mt-md-2 mb-0 ms-2 ms-md-4">
-						Capacity: ${eventDetails.capacity}
-					</p>
-					<p class="card-text mb-2 ms-2 ms-md-4">
-						${assintanceOrEstimated}
-					</p>
-				</div>
-			</div>
+		<div class="d-flex flex-column flex-md-row justify-content-center align-items-center " id="details">
+		<div class="d-flex flex-column details-shadow-${colorStyle}" id="details-image">
+			<img src="${eventDetails.image}" alt="${eventDetails.name}"	class="img-fluid">
+			<h4 class="card-category mt-2 text-center">${eventDetails.category}</h4>
 		</div>
-		</div>`
+		<div class="details-shadow-${colorStyle}" id="details-info">
+
+			<div class="d-flex justify-content-between px-4 py-2" id="details-head">
+				<h3 class="card-title">${eventDetails.name}</h3>
+				<h3 class="italic">$${eventDetails.price}</h3>
+			</div>
+
+			<div class="px-4 px-md-2" id="details-date-place">
+
+				<p class="m-1">
+					<small class="text-muted">Date: ${eventDetails.date}</small>
+				</p>
+				
+				<p class="m-1">
+					<small class="text-muted">Place: ${eventDetails.place}</small>
+				</p>
+			</div>
+			
+			<div class="px-3 px-md-2 py-0 details-shadow-${colorStyle}" id="details-description">
+				<p class="details-text">
+				${eventDetails.description}
+				</p>
+			</div>
+			<div class="px-3 px-md-2 flex-row flex-md-column" id="details-footer">
+				<p class="my-0 ms-2">
+					<span class="cap-conf">Capacity:</span> ${eventDetails.capacity}
+				</p>
+				<p class="my-0 ms-2">
+					${assintanceOrEstimated}
+			</div>
+			</p>
+		</div>
+	</div>`
 		
 		details_container.innerHTML = detailsContent
 
