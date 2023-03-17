@@ -33,9 +33,9 @@ let asyncStats = async function(){
 		
 		for (let index = 0; index < rowNumber; index++) {
 			tableEventStatsString += `<tr>
-			<td>${datos.maxCap[index] !== "" ? datos.maxCap[index].name : ""}</td>
 			<td>${datos.maxPerc[index] !== "" ? datos.maxPerc[index].name : ""}</td>
 			<td>${datos.minPerc[index] !== "" ? datos.minPerc[index].name : ""}</td>
+			<td>${datos.maxCap[index] !== "" ? datos.maxCap[index].name : ""}</td>
 			</tr>
 			`			
 		}
