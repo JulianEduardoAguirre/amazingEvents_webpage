@@ -19,15 +19,13 @@ document.onkeydown = function (key){
 				title: "Colors enabled",
 				text: "Just a moment...",
 				icon: "success",
-				// button: "Ok",
 			});
 		} else {
 			// alert("Colors disabled.\nReloading");
 			swal({
 				title: "Colors disabled",
 				text: "Just a moment...",
-				icon: "warning",
-				// button: "Ok",
+				icon: "error",
 			});
 		}
 
@@ -35,9 +33,6 @@ document.onkeydown = function (key){
 		setTimeout(function(){
 			window.location.reload();
 		}, millisecondsToWait);
-
-
-		// window.location.reload();
 
 		sessionStorage.setItem("colors", !dummy2);
 	}
