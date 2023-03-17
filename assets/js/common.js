@@ -8,17 +8,36 @@ let colouredCards = sessionStorage.getItem("colors");
 
 document.onkeydown = function (key){
 	if(key.ctrlKey && key.which == 66){
-		window.location.reload();
 		// alert("Ctrl + B shortcut combination was pressed");
 
 		let dummy = sessionStorage.getItem("colors");
 		let dummy2 = JSON.parse(dummy) === true;
 
 		if(!dummy2){
-			alert("Colors enabled. Reloading");
+			// alert("Colors enabled.\nReloading");
+			swal({
+				title: "Colors enabled",
+				text: "Just a moment...",
+				icon: "success",
+				// button: "Ok",
+			});
 		} else {
-			alert("Colors disabled");
+			// alert("Colors disabled.\nReloading");
+			swal({
+				title: "Colors disabled",
+				text: "Just a moment...",
+				icon: "warning",
+				// button: "Ok",
+			});
 		}
+
+		let millisecondsToWait = 1500;
+		setTimeout(function(){
+			window.location.reload();
+		}, millisecondsToWait);
+
+
+		// window.location.reload();
 
 		sessionStorage.setItem("colors", !dummy2);
 	}
