@@ -1,5 +1,29 @@
-// WANT COLOURED CARDS??
-let colouredCards = false;
+// FOR MULTICOLORED BEHAVIOR (USE CTRL+B ON ANY PAGE)
+let colorsSS = sessionStorage.getItem("colors");
+if (colorsSS == null){
+	sessionStorage.setItem("colors", false);
+}
+
+let colouredCards = sessionStorage.getItem("colors");
+
+document.onkeydown = function (key){
+	if(key.ctrlKey && key.which == 66){
+		window.location.reload();
+		// alert("Ctrl + B shortcut combination was pressed");
+
+		let dummy = sessionStorage.getItem("colors");
+		let dummy2 = JSON.parse(dummy) === true;
+
+		if(!dummy2){
+			alert("Colors enabled. Reloading");
+		} else {
+			alert("Colors disabled");
+		}
+
+		sessionStorage.setItem("colors", !dummy2);
+	}
+
+}
 
 // DATA SOURCES
 let apiUrl = "https://mindhub-xj03.onrender.com/api/amazing"
@@ -82,11 +106,14 @@ function generateCard(evento, refDate, cardClassColor, withColour){
 function generateCards(myObj, categoriesArray){
 
 	let cardsHTML = `<div class="d-flex flex-wrap my-5 justify-content-around">`
+	let withColors = JSON.parse(sessionStorage.getItem("colors")) === true;
+	// withColors = false;																																								//Discomment this line for no multiple colors
 
 	if (myObj.events.length != 0){
 		myObj.events.forEach((event) => {
 			let colorStyle = colorStyles[categoriesArray.indexOf(event.category) % colorStyles.length]
-			cardsHTML += generateCard(event, myObj.currentDate, colorStyle, colouredCards)
+			// cardsHTML += generateCard(event, myObj.currentDate, colorStyle, colouredCards)
+			cardsHTML += generateCard(event, myObj.currentDate, colorStyle, withColors)
 		})
 	} else {
 		cardsHTML += `<div class="d-flex flex-column"> <p class="text-center" style="color:white;font-size:3rem;">Oops, no coincidences!</p><p class="text-center" style="color:white;font-size:2rem;">Try adjusting your search parameters</p></div>`
@@ -264,4 +291,10 @@ let generateCategoryStats2 = (categoryName, eventsArray) => {
 
 	return categoryData;
 
+}
+
+let modifyColorVariable = function (key){
+	if(key.ctrlKey && key.which == 66){
+		alert("Ctrl + B shortcut combination was pressed");
+	}
 }

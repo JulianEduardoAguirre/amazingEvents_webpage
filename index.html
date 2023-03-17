@@ -21,7 +21,15 @@
 
 <!-- HOME -->
 
-<body>
+<body 			x-data="alertComponent()"
+x-init="$watch('openAlertBox', value => {
+	if(value){
+		setTimeout(function () {
+			openAlertBox = false
+		}, 2000)
+	}
+})"
+class="relative">
 	<!-- CABECERA - POSEE LOS BOTONES DE NAVEGACION -->
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
