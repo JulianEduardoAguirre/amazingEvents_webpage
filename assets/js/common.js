@@ -34,9 +34,6 @@ document.onkeydown = function (key){
 			window.location.reload();
 		}, millisecondsToWait);
 
-
-		// window.location.reload();
-
 		sessionStorage.setItem("colors", !dummy2);
 	}
 
