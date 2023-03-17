@@ -28,7 +28,12 @@ let asyncDetails = async function(){
 		let categoriesArray = [...categorySetGenerator2(apiEvents)]
 		let colorStyle = colorStyles[categoriesArray.indexOf(eventDetails.category) % colorStyles.length]							
 		// colorStyle = "default"																																														//COMMENT THIS LINE FOR COLORED ANIMATION	
-		colorStyle = (colouredCards? colorStyle: "default");												
+		
+		let withColors = JSON.parse(sessionStorage.getItem("colors")) === true;
+		// withColors = false;																																								//Discomment this line for no multiple colors
+
+		
+		colorStyle = (withColors? colorStyle: "default");												
 		
 		let detailsContent = `
 		<div class="d-flex flex-column flex-md-row justify-content-center align-items-center " id="details">
