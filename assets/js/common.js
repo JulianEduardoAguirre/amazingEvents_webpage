@@ -1,4 +1,4 @@
-// WANT COLOURED CARDS??
+// FOR MULTICOLORED BEHAVIOR (USE CTRL+B ON ANY PAGE)
 let colorsSS = sessionStorage.getItem("colors");
 if (colorsSS == null){
 	sessionStorage.setItem("colors", false);
@@ -7,21 +7,23 @@ if (colorsSS == null){
 let colouredCards = sessionStorage.getItem("colors");
 
 document.onkeydown = function (key){
-	window.location.reload();
 	if(key.ctrlKey && key.which == 66){
-		alert("Ctrl + B shortcut combination was pressed");
+		window.location.reload();
+		// alert("Ctrl + B shortcut combination was pressed");
 
 		let dummy = sessionStorage.getItem("colors");
 		let dummy2 = JSON.parse(dummy) === true;
+
+		if(!dummy2){
+			alert("Colors enabled. Reloading");
+		} else {
+			alert("Colors disabled");
+		}
 
 		sessionStorage.setItem("colors", !dummy2);
 	}
 
 }
-
-
-// let colouredCards = false;
-// colouredCards = false;
 
 // DATA SOURCES
 let apiUrl = "https://mindhub-xj03.onrender.com/api/amazing"
